@@ -13,7 +13,7 @@ public class TextGenerationService {
     }
 
     public String generateTextLlama2(String question) {
-        return llamaTextGeneration.GenerateText(question);
+        return llamaTextGeneration.GenerateTextLlama2(question);
     }
 }
 

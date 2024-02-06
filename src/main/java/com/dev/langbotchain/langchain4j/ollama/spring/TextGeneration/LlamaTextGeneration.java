@@ -1,29 +1,35 @@
 package com.dev.langbotchain.langchain4j.ollama.spring.TextGeneration;
 
-import dev.langchain4j.model.language.LanguageModel;
-import dev.langchain4j.model.ollama.OllamaLanguageModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.ollama.OllamaChatModel;
 import org.springframework.stereotype.Component;
 import org.testcontainers.containers.GenericContainer;
 
+import java.time.Duration;
+
 @Component
 public class LlamaTextGeneration {
-    static String MODEL_NAME = "llama2";
-    GenericContainer<?> ollama = new GenericContainer<>("langchain4j/ollama-" + MODEL_NAME + ":latest")
+    GenericContainer<?> llama2 = new GenericContainer<>("langchain4j/ollama-" + "llama2" + ":latest")
             .withExposedPorts(11434);
-    public String GenerateText(String question) {
+    public String GenerateTextLlama2(String question) {
 
-        if(!ollama.isRunning()){
-            ollama.start();
+        if(!llama2.isRunning()){
+            llama2.start();
         }
-
-        String baseUrl = String.format("http://%s:%d", ollama.getHost(), ollama.getFirstMappedPort());
-
-        LanguageModel model = OllamaLanguageModel.builder()
-                .baseUrl(baseUrl)
-                .modelName(MODEL_NAME)
-                .build();
-
-        String answer = String.valueOf(model.generate(question));
+        String answer = String.valueOf(initializeModel().generate(question));
         return answer;
     }
+
+    public ChatLanguageModel initializeModel(){
+        String baseUrl = String.format("http://%s:%d", llama2.getHost(), llama2.getFirstMappedPort());
+
+        ChatLanguageModel model = OllamaChatModel.builder()
+                .baseUrl(baseUrl)
+                .modelName("llama2")
+                .timeout(Duration.ofMinutes(2))
+                .maxRetries(3)
+                .build();
+        return model;
+    }
 }
+
