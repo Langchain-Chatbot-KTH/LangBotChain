@@ -5,6 +5,7 @@ import dev.langchain4j.model.StreamingResponseHandler;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaStreamingChatModel;
 import dev.langchain4j.model.output.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testcontainers.containers.GenericContainer;
 
@@ -49,7 +50,7 @@ public class LlamaStreamGeneration {
         futureResponse.join();
     }
 
-    private StreamingChatLanguageModel initializeModel(){
+    private StreamingChatLanguageModel initializeModel() {
         String baseUrl = String.format("http://%s:%d", llama2.getHost(), llama2.getFirstMappedPort());
 
         StreamingChatLanguageModel model = OllamaStreamingChatModel.builder()
