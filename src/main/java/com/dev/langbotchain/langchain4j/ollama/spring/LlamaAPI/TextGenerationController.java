@@ -24,6 +24,11 @@ public class TextGenerationController {
         return textGenerationService.generateTextLlama2(message);
     }
 
+    @GetMapping("/llama2Doc")
+    public String generateTextLlama2Doc(@RequestParam String message) {
+        return textGenerationService.generateTextLlama2Doc(message);
+    }
+
     @GetMapping("/health")
     public String heartBeat() {
         return "Running";

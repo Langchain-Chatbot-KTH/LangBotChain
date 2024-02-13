@@ -15,6 +15,10 @@ public class TextGenerationService {
     public String generateTextLlama2(String question) {
         return llamaTextGeneration.GenerateTextLlama2(question);
     }
+
+    public String generateTextLlama2Doc(String question) {
+        return llamaTextGeneration.GenerateTextLlama2Docs(question);
+    }
 }
 
 
