@@ -2,10 +2,10 @@ package com.dev.langbotchain.langchain4j.ollama.spring.LlamaAPI;
 
 import com.dev.langbotchain.langchain4j.ollama.spring.Service.TextGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/generateText")
@@ -24,9 +24,22 @@ public class TextGenerationController {
         return textGenerationService.generateTextLlama2(message);
     }
 
-    @GetMapping("/llama2Doc")
-    public String generateTextLlama2Doc(@RequestParam String message) {
-        return textGenerationService.generateTextLlama2Doc(message);
+//    @GetMapping("/llama2Doc")
+//    public String generateTextLlama2Doc(@RequestParam String message) {
+//        return textGenerationService.generateTextLlama2Doc(message);
+//    }
+
+    @GetMapping("/llama2/url")
+    public String generateTextWithUrlLlama2(@RequestParam String message,
+                                            @RequestParam String UrlPath) {
+        return textGenerationService.generateTextWithUrlLlama2(message,UrlPath);
+    }
+
+    @PostMapping("/withDocumentLlama2")
+    public String generateTextWithDocumentLlama2(
+            @RequestParam String message,
+            @RequestPart("document") MultipartFile document) throws IOException {
+        return textGenerationService.generateTextWithDocumentLlama2(message,document);
     }
 
     @GetMapping("/health")

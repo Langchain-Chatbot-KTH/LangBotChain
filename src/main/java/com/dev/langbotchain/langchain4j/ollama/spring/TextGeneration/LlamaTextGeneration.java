@@ -2,7 +2,6 @@ package com.dev.langbotchain.langchain4j.ollama.spring.TextGeneration;
 
 import com.dev.langbotchain.langchain4j.ollama.spring.Agents.GeneralAgent;
 import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.loader.UrlDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.memory.ChatMemory;
@@ -13,6 +12,7 @@ import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import org.testcontainers.containers.GenericContainer;
 
 
@@ -28,6 +28,8 @@ import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -53,11 +55,20 @@ public class LlamaTextGeneration {
         return answer;
     }
 
-    public String GenerateTextLlama2Docs(String question) {
+    public String generateTextWithDocumentLlama2(String question, MultipartFile document) throws IOException {
 
         if(!llama2.isRunning()){
             llama2.start();
-            initializeOllamaDocRetriever();
+            initializeTextWithDocumentlLlama2(document);
+        }
+        String answer = String.valueOf(chat(question));
+        return answer;
+    }
+
+    public String generateTextWithUrlLlama2(String question, String UrlPath) {
+        if(!llama2.isRunning()){
+            llama2.start();
+            initializeTextWithUrlLlama2(UrlPath);
         }
         String answer = String.valueOf(chat(question));
         return answer;
@@ -69,7 +80,7 @@ public class LlamaTextGeneration {
         ChatLanguageModel model = OllamaChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName("llama2")
-                .timeout(Duration.ofMinutes(2))
+                .timeout(Duration.ofMinutes(6))
                 .maxRetries(3)
                 .build();
         return model;
@@ -88,7 +99,38 @@ public class LlamaTextGeneration {
 
     }
 
-    void initializeOllamaDocRetriever() {
+    void initializeTextWithUrlLlama2(String UrlPath) {
+        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        ChatLanguageModel OllamaModel = initializeModel();
+        DocumentParser documentParser = new TextDocumentParser();
+        Document document = UrlDocumentLoader.load(UrlPath, documentParser);
+
+        DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
+        List<TextSegment> segments = splitter.split(document);
+
+        EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+        List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
+
+        EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+        embeddingStore.addAll(embeddings, segments);
+
+        ContentRetriever contentRetriever = EmbeddingStoreContentRetriever.builder()
+                .embeddingStore(embeddingStore)
+                .embeddingModel(embeddingModel)
+                .maxResults(2) // on each interaction we will retrieve the 2 most relevant segments
+                .minScore(0.5) // we want to retrieve segments at least somewhat similar to user query
+                .build();
+
+        assistant = AiServices.builder(GeneralAgent.class)
+                .chatLanguageModel(OllamaModel)
+                .contentRetriever(contentRetriever)
+                .chatMemory(chatMemory)
+                .build();
+
+        System.out.println("Assistant with URL is loaded");
+
+    }
+    void initializeTextWithDocumentlLlama2(MultipartFile userDocument) throws IOException {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         ChatLanguageModel OllamaModel = initializeModel();
@@ -101,12 +143,20 @@ public class LlamaTextGeneration {
         // Additionally, LangChain4j supports parsing multiple document types:
         // text, pdf, doc, xls, ppt.
         // However, you can also manually import your data from other sources.
-        Path documentPath = Paths.get("E:\\Github-Projects\\LangBotChain\\src\\main\\resources\\randomTermsOfUse.txt");
+
+        // Path documentPath = Paths.get("E:\\Github-Projects\\LangBotChain\\src\\main\\resources\\randomTermsOfUse.txt");
         DocumentParser documentParser = new TextDocumentParser();
+
+        InputStream fileInputStream = userDocument.getInputStream();
+        Document document = documentParser.parse(fileInputStream);
+        // Don't forget to close the stream after processing:
+        fileInputStream.close();
+
+        //Document document = documentParser.parse((InputStream) userDocument);
 
         //Document document = FileSystemDocumentLoader.loadDocument(documentPath, documentParser);
 
-        Document document = UrlDocumentLoader.load("https://sv.wikipedia.org/wiki/Katarina_Howard", documentParser);
+        //Document document = UrlDocumentLoader.load("https://sv.wikipedia.org/wiki/Katarina_Howard", documentParser);
 
 
         // Now, we need to split this document into smaller segments, also known as "chunks."
