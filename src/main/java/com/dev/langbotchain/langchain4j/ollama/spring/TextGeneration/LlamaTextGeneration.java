@@ -11,8 +11,11 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 
+import org.apache.commons.compress.utils.FileNameUtils;
+import org.jsoup.UnsupportedMimeTypeException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 import org.testcontainers.containers.GenericContainer;
 
 
@@ -28,6 +31,10 @@ import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
+
+import dev.langchain4j.data.document.parser.apache.pdfbox.ApachePdfBoxDocumentParser;
+import org.testcontainers.shaded.org.apache.commons.io.FilenameUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -36,6 +43,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.time.Duration;
+
+import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
 
 
 @Component
@@ -99,6 +108,7 @@ public class LlamaTextGeneration {
 
     }
 
+    // Example code from https://github.com/langchain4j/langchain4j-examples/blob/main/rag-examples/src/main/java/_01_Naive_RAG.java
     void initializeTextWithUrlLlama2(String UrlPath) {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
         ChatLanguageModel OllamaModel = initializeModel();
@@ -131,33 +141,26 @@ public class LlamaTextGeneration {
 
     }
     void initializeTextWithDocumentlLlama2(MultipartFile userDocument) throws IOException {
+        DocumentParser documentParser;
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         ChatLanguageModel OllamaModel = initializeModel();
 
-        // Now, let's load a document that we want to use for RAG.
-        // We will use the terms of use from an imaginary car rental company, "Miles of Smiles".
-        // For this example, we'll import only a single document, but you can load as many as you need.
-        // LangChain4j offers built-in support for loading documents from various sources:
-        // File System, URL, Amazon S3, Azure Blob Storage, GitHub, Tencent COS.
-        // Additionally, LangChain4j supports parsing multiple document types:
-        // text, pdf, doc, xls, ppt.
-        // However, you can also manually import your data from other sources.
+        String extension = FilenameUtils.getExtension(userDocument.getOriginalFilename());
 
-        // Path documentPath = Paths.get("E:\\Github-Projects\\LangBotChain\\src\\main\\resources\\randomTermsOfUse.txt");
-        DocumentParser documentParser = new TextDocumentParser();
+        // need to handle this exception, only crashes atm
+        if(extension.equals("pdf")) {
+             documentParser = new ApachePdfBoxDocumentParser();
+        } else if(extension.equals("txt")) {
+            documentParser = new TextDocumentParser();
+        } else {
+            throw new UnsupportedOperationException("Not supporting this filetype: " + extension);
+        }
 
+        //This parses the Multipartfile from the request to a Document which is needed for the langchain4j splitter
         InputStream fileInputStream = userDocument.getInputStream();
         Document document = documentParser.parse(fileInputStream);
-        // Don't forget to close the stream after processing:
         fileInputStream.close();
-
-        //Document document = documentParser.parse((InputStream) userDocument);
-
-        //Document document = FileSystemDocumentLoader.loadDocument(documentPath, documentParser);
-
-        //Document document = UrlDocumentLoader.load("https://sv.wikipedia.org/wiki/Katarina_Howard", documentParser);
-
 
         // Now, we need to split this document into smaller segments, also known as "chunks."
         // This approach allows us to send only relevant segments to the LLM in response to a user query,
@@ -194,7 +197,7 @@ public class LlamaTextGeneration {
                 .embeddingStore(embeddingStore)
                 .embeddingModel(embeddingModel)
                 .maxResults(2) // on each interaction we will retrieve the 2 most relevant segments
-                .minScore(0.5) // we want to retrieve segments at least somewhat similar to user query
+                .minScore(0.7) // we want to retrieve segments at least somewhat similar to user query
                 .build();
 
 
@@ -215,15 +218,12 @@ public class LlamaTextGeneration {
                 .chatMemory(chatMemory)
                 .build();
 
-        System.out.println("Content retriever ");
-
     }
 
     private String chat(String message) {
         return assistant.chat(message);
     }
 
-    //i am not sure why this cant find the filepath, hardcoding it in the intializer for this push
     static Path toPath(String fileName) {
         try {
             URL fileUrl = LlamaTextGeneration.class.getResource(fileName);
