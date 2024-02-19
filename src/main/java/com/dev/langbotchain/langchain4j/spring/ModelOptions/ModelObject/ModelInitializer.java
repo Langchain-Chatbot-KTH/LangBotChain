@@ -7,7 +7,6 @@ import static com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.M
 
 @Component
 public class ModelInitializer {
-
     @PostConstruct
     public void init() {
         ModelList.populateModels();
