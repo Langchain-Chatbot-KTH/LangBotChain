@@ -11,13 +11,9 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.service.AiServices;
 
-import org.apache.commons.compress.utils.FileNameUtils;
-import org.jsoup.UnsupportedMimeTypeException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 import org.testcontainers.containers.GenericContainer;
-
 
 import dev.langchain4j.data.document.DocumentParser;
 import dev.langchain4j.data.document.DocumentSplitter;
@@ -43,9 +39,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.time.Duration;
-import java.util.Optional;
-
-import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
 
 
 

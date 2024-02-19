@@ -24,18 +24,13 @@ public class TextGenerationController {
         return textGenerationService.generateTextLlama2(message);
     }
 
-//    @GetMapping("/llama2Doc")
-//    public String generateTextLlama2Doc(@RequestParam String message) {
-//        return textGenerationService.generateTextLlama2Doc(message);
-//    }
-
     @GetMapping("/llama2/url")
     public String generateTextWithUrlLlama2(@RequestParam String message,
                                             @RequestParam String UrlPath) {
         return textGenerationService.generateTextWithUrlLlama2(message,UrlPath);
     }
 
-    @PostMapping("/withDocumentLlama2")
+    @PostMapping("/llama2/Document")
     public String generateTextWithDocumentLlama2(
             @RequestParam String message,
             @RequestPart("document") MultipartFile document) throws IOException {
