@@ -24,10 +24,12 @@ public class StreamGenerationController {
     }
 
     @GetMapping("/llama2")
-    public ResponseEntity<StreamingResponseBody> generateTextLlama2(@RequestParam String message) {
+    public ResponseEntity<StreamingResponseBody> generateTextLlama2(
+            @RequestParam String message,
+            @RequestParam String uuid) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body((OutputStream outputStream) -> {
-                    streamGenerationService.generateStreamLlama2(message, outputStream);
+                    streamGenerationService.generateStreamLlama2(message, outputStream, uuid);
                 });
     }
 
@@ -36,4 +38,3 @@ public class StreamGenerationController {
         return "Running";
     }
 }
-

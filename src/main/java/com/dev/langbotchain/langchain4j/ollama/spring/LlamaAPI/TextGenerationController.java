@@ -35,7 +35,7 @@ public class TextGenerationController {
                 "message", message,
                 "uuid", uuid
         ));
-        kafkaTemplate.send("questions", jsonMessageQuestion);
+        kafkaTemplate.send("questions", jsonMessageQuestion); // Not done in correct way. generateTextLlama2 should be listening on the topic.
         String answer = textGenerationService.generateTextLlama2(message);
         String jsonMessageResponse = objectMapper.writeValueAsString(Map.of(
                 "message", answer,
@@ -49,6 +49,4 @@ public class TextGenerationController {
         return "Running";
     }
 
-
 }
-

@@ -31,7 +31,7 @@ public class SseController {
     }
 
     public void sendToClient(String uuid, String data) {
-        System.out.println("THE DATA: " + data);
+        System.out.println("Token sent to client: " + data);
         SseEmitter emitter = emitters.get(uuid);
         if (emitter != null) {
             try {
