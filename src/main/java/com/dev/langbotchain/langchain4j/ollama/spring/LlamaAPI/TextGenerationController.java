@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -42,6 +44,19 @@ public class TextGenerationController {
                 "uuid", uuid
         ));
         kafkaTemplate.send("answers", jsonMessageResponse);
+    }
+
+    @GetMapping("/llama2/url")
+    public String generateTextWithUrlLlama2(@RequestParam String message,
+                                            @RequestParam String UrlPath) {
+        return textGenerationService.generateTextWithUrlLlama2(message,UrlPath);
+    }
+
+    @PostMapping("/llama2/Document")
+    public String generateTextWithDocumentLlama2(
+            @RequestParam String message,
+            @RequestPart("document") MultipartFile document) throws IOException {
+        return textGenerationService.generateTextWithDocumentLlama2(message,document);
     }
 
     @GetMapping("/health")
