@@ -32,15 +32,13 @@ public class InitializeStreamByModel {
         }
         return false;
     }
-
     private static StreamingChatLanguageModel ollamaStream(String modelName) {
         String baseUrl = String.format("http://%s:%d", getContainerModel().getHost(), getContainerModel().getFirstMappedPort());
 
-        StreamingChatLanguageModel languageModel = OllamaStreamingChatModel.builder()
+        return OllamaStreamingChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName(modelName)
                 .timeout(Duration.ofMinutes(2))
                 .build();
-        return languageModel;
     }
 }

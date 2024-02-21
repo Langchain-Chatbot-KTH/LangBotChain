@@ -13,7 +13,7 @@ public class StreamGenerationService {
         this.streamGeneration = streamGeneration;
     }
 
-    public void generateStream(String question, OutputStream outputStream , String model, String uuid) {
-        streamGeneration.GenerateStream(question, outputStream, model, uuid);
+    public void generateStream(String question, String model, String uuid) {
+        streamGeneration.GenerateStream(question, model, uuid);
     }
 }

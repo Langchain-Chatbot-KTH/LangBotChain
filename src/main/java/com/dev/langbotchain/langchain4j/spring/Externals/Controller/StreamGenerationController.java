@@ -24,13 +24,11 @@ public class StreamGenerationController {
     }
 
     @GetMapping("/model")
-    public ResponseEntity<StreamingResponseBody> generateTextLlama2(@RequestParam String message,
-                                                                    @RequestParam String model,
-                                                                    @RequestParam String uuid) {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body((OutputStream outputStream) -> {
-                    streamGenerationService.generateStream(message, outputStream, model, uuid);
-                });
+    public String generateText(@RequestParam String message,
+                                               @RequestParam String model,
+                                               @RequestParam String uuid) {
+        streamGenerationService.generateStream(message, model, uuid);
+        return "Streaming";
     }
 
     @GetMapping("/health")

@@ -30,7 +30,7 @@ public class TextGenerationController {
     }
 
     @GetMapping("/text")
-    public void generateTextLlama2(@RequestParam String message,
+    public void generateText(@RequestParam String message,
                                      @RequestParam String modelName,
                                      @RequestParam String uuid)  throws JsonProcessingException {
         String jsonMessageQuestion = objectMapper.writeValueAsString(Map.of(
@@ -44,6 +44,13 @@ public class TextGenerationController {
                 "uuid", uuid
         ));
         kafkaTemplate.send("answers", jsonMessageResponse);
+    }
+
+    @GetMapping("/WholeText")
+    public String generateWholeText(@RequestParam String message,
+                             @RequestParam String modelName,
+                             @RequestParam String uuid) {
+        return textGenerationService.generateText(message, modelName, uuid);
     }
 
     @GetMapping("/health")
