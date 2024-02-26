@@ -1,8 +1,10 @@
-package com.dev.langbotchain.langchain4j.spring.ModelOptions.DockerImport;
+package com.dev.langbotchain.langchain4j.spring.DockerImport;
 
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.dev.langbotchain.langchain4j.spring.ModelOptions.OllamaModel.PopulateOllamaModels.populateOllamaModels;
@@ -85,6 +87,24 @@ public class DockerImageBuilder {
                 deleteErrorGobbler.join();
 
                 System.out.println("Delete Process Complete...");
+
+                // Now, add Docker system prune command after deleting the image
+                System.out.println("Pruning Docker system...");
+                ProcessBuilder pruneProcess = new ProcessBuilder("docker", "system", "prune", "-f");
+                pruneProcess.directory(new File("."));
+                System.out.println("Prune Process Started...");
+                Process prune = pruneProcess.start();
+
+                StreamGobbler pruneOutputGobbler = new StreamGobbler(prune.getInputStream(), System.out);
+                StreamGobbler pruneErrorGobbler = new StreamGobbler(prune.getErrorStream(), System.err);
+                pruneOutputGobbler.start();
+                pruneErrorGobbler.start();
+
+                prune.waitFor();
+                pruneOutputGobbler.join();
+                pruneErrorGobbler.join();
+
+                System.out.println("Prune Process Complete...");
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -99,14 +119,25 @@ public class DockerImageBuilder {
                 "CMD [\"serve\"]";
     }
 
-    private static boolean doesRepositoryExist(String repositoryName) {
-        try {
-            Process process = Runtime.getRuntime().exec("docker pull --quiet " + repositoryName);
-            int exitCode = process.waitFor();
-            return exitCode == 0;
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return false;
+    private static boolean doesRepositoryExist(String repositoryWithTag) throws IOException {
+        String[] parts = repositoryWithTag.split(":");
+        String repositoryName = parts[0];
+        String tagName = parts.length > 1 ? parts[1] : null;
+        if (tagName == null) {
+            URL url = new URL("https://hub.docker.com/v2/repositories/" + repositoryName);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            return responseCode == HttpURLConnection.HTTP_OK;
+        } else {
+            // Check if the repository exists with a specific tag
+            URL url = new URL("https://hub.docker.com/v2/repositories/" + repositoryName + "/tags/" + tagName);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            return responseCode == HttpURLConnection.HTTP_OK;
         }
     }
 
