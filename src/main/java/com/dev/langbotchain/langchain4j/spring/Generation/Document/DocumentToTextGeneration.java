@@ -50,7 +50,6 @@ public class DocumentToTextGeneration {
     private DocumentParser createDocumentParser(MultipartFile userDocument) throws UnsupportedOperationException {
         if (userDocument != null) {
             String extension = FilenameUtils.getExtension(userDocument.getOriginalFilename());
-
             switch (extension) {
                 case "pdf":
                     return new ApachePdfBoxDocumentParser();
@@ -89,14 +88,5 @@ public class DocumentToTextGeneration {
     }
     private String chat(String message) {
         return assistant.chat(message);
-    }
-
-    static Path toPath(String fileName) {
-        try {
-            URL fileUrl = TextGeneration.class.getResource(fileName);
-            return Paths.get(fileUrl.toURI());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

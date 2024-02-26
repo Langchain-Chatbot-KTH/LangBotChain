@@ -19,7 +19,7 @@ public class DocumentGenerationController {
     }
 
     @PostMapping("/document")
-    public String generateTextWithDocumentLlama2(
+    public String generateTextWithDocument(
             @RequestParam String message,
             @RequestPart("document") MultipartFile document,
             @RequestParam String modelName) throws IOException {
