@@ -64,7 +64,7 @@ public class PopulateOllamaModels {
         //Google Gemma - Gemma is a family of lightweight, state-of-the-art open models built by Google DeepMind. https://ollama.com/library/gemma
         models.add(new Model("gemma:2b", ollamaProperties, "langchain4j/ollama-gemma:2b:latest", 1.400));
         models.add(new Model("gemma:7b", ollamaProperties, "langchain4j/ollama-gemma:7b:latest", 4.800));
-        models.add(new Model("gemma:instruct", ollamaProperties, "langchain4j/ollama-gemma:instruct:latest", 5.200));
+        models.add(new Model("gemma:instruct", ollamaProperties, "samuelteg/gemma:instruct", 5.200));
 
         //openhermes - OpenHermes 2.5 is a 7B model fine-tuned by Teknium on Mistral with fully open datasets. https://ollama.com/library/openhermes
         models.add(new Model("openhermes", ollamaProperties, "langchain4j/ollama-openhermes:latest", 4.100));
@@ -159,7 +159,7 @@ public class PopulateOllamaModels {
         models.add(new Model("codellama:70b-python", ollamaProperties, "langchain4j/ollama-codellama:70b-python:latest", 39.00));
 
         //deepseek-coder - DeepSeek Coder is a capable coding model trained on two trillion code and natural language tokens. https://ollama.com/library/deepseek-coder
-        models.add(new Model("deepseek-coder", ollamaProperties, "langchain4j/ollama-deepseek-coder:latest", 0.776));
+        models.add(new Model("deepseek-coder", ollamaProperties, "samuelteg/deepseek-coder:latest", 0.776));
         models.add(new Model("deepseek-coder:6.7b", ollamaProperties, "langchain4j/ollama-deepseek-coder:6.7b:latest", 3.800));
         models.add(new Model("deepseek-coder:33b", ollamaProperties, "langchain4j/ollama-deepseek-coder:33b:latest", 19.00));
 

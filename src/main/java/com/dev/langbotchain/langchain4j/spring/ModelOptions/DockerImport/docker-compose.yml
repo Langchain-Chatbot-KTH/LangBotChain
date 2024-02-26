@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  my_ollama_service:
+    image: samuelteg/deepseek-coder:v0.1
+    container_name: deepseek-coder
+    hostname: deepseek-coder
+

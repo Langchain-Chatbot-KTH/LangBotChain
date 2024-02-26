@@ -202,7 +202,7 @@ Model Size: 4.8 GB
 ---------------------------
 Model Name: gemma:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-gemma:instruct:latest
+Model Docker Image: samuelteg/gemma:instruct
 Model Size: 5.2 GB
 ---------------------------
                             .__                                        
@@ -571,7 +571,7 @@ Model Size: 39.0 GB
 
 Model Name: deepseek-coder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-deepseek-coder:latest
+Model Docker Image: samuelteg/deepseek-coder:latest
 Model Size: 0.776 GB
 ---------------------------
 Model Name: deepseek-coder:6.7b
