@@ -1,5 +1,5 @@
-FROM eclipse-temurin:17
-VOLUME /tmp
-ARG JAR_FILE=target/LangChainBot-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+# syntax=docker/dockerfile:1
+FROM --platform=linux/amd64 ollama/ollama:latest
+RUN /bin/sh -c "/bin/ollama serve & sleep 1 && ollama pull mistral"
+ENTRYPOINT ["/bin/ollama"]
+CMD ["serve"]

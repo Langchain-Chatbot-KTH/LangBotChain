@@ -23,10 +23,10 @@ public class PopulateOllamaModels {
         //Llama - Llama 2 is a collection of foundation language models ranging from 7B to 70B parameters. https://ollama.com/library/llama2
         models.add(new Model("llama2", ollamaProperties, "langchain4j/ollama-llama2:latest", 3.800));
         models.add(new Model("llama2:13b", ollamaProperties, "langchain4j/ollama-llama2:13b:latest", 7.300));
-        models.add(new Model("llama2:70b", ollamaProperties, "langchain4j/ollama-llama2:70b:latest", 39.00));
+        //models.add(new Model("llama2:70b", ollamaProperties, "langchain4j/ollama-llama2:70b:latest", 39.00));
 
         //Mistral - Mistral is a 7.3B parameter model, distributed with the Apache license. It is available in both instruct (instruction following) and text completion. https://ollama.com/library/mistral
-        models.add(new Model("mistral:7.3b", ollamaProperties, "langchain4j/ollama-mistral:latest", 4.100));
+        models.add(new Model("mistral", ollamaProperties, "langchain4j/ollama-mistral:latest", 4.100));
         models.add(new Model("mistral:instruct", ollamaProperties, "langchain4j/ollama-mistral:instruct:latest", 4.100));
 
         //Mixtral - A high-quality Mixture of Experts (MoE) model with open weights by Mistral AI. https://ollama.com/library/mixtral
@@ -49,7 +49,7 @@ public class PopulateOllamaModels {
         models.add(new Model("orca-mini", ollamaProperties, "langchain4j/ollama-orca-mini:latest", 1.900));
         models.add(new Model("orca-mini:7b", ollamaProperties, "langchain4j/ollama-orca-mini:7b:latest", 3.800));
         models.add(new Model("orca-mini:13b", ollamaProperties, "langchain4j/ollama-orca-mini:13b:latest", 7.400));
-        models.add(new Model("orca-mini:70b", ollamaProperties, "langchain4j/ollama-orca-mini:70b:latest", 39.00));
+        //models.add(new Model("orca-mini:70b", ollamaProperties, "langchain4j/ollama-orca-mini:70b:latest", 39.00));
 
         //Vicuna - General use chat model based on Llama and Llama 2 with 2K to 16K context sizes. https://ollama.com/library/vicuna
         models.add(new Model("vicuna", ollamaProperties, "langchain4j/ollama-vicuna:latest", 3.800));
@@ -59,7 +59,7 @@ public class PopulateOllamaModels {
         //Llava - vision encoder and Vicuna for general-purpose visual and language understanding. https://ollama.com/library/llava
         models.add(new Model("llava:7b", ollamaProperties, "langchain4j/ollama-ollama-llava:latest", 4.500));
         models.add(new Model("llava:13b", ollamaProperties, "langchain4j/ollama-llava:13b:latest", 8.000));
-        models.add(new Model("llava:34b", ollamaProperties, "langchain4j/ollama-llava:34b:latest", 34.00));
+        //models.add(new Model("llava:34b", ollamaProperties, "langchain4j/ollama-llava:34b:latest", 34.00));
 
         //Google Gemma - Gemma is a family of lightweight, state-of-the-art open models built by Google DeepMind. https://ollama.com/library/gemma
         models.add(new Model("gemma:2b", ollamaProperties, "langchain4j/ollama-gemma:2b:latest", 1.400));
@@ -84,8 +84,8 @@ public class PopulateOllamaModels {
         models.add(new Model("falcon:40b", ollamaProperties, "langchain4j/ollama-falcon:40b:latest", 24.00));
         models.add(new Model("falcon:180b", ollamaProperties, "langchain4j/ollama-falcon:180b:latest", 101.00));
         models.add(new Model("falcon:instruct", ollamaProperties, "langchain4j/ollama-falcon:instruct:latest", 4.100));
-        models.add(new Model("falcon:40b-instruct", ollamaProperties, "langchain4j/ollama-falcon:40b-instruct:latest", 24.00));
-        models.add(new Model("falcon:180b-instruct", ollamaProperties, "langchain4j/ollama-falcon:180b-instruct:latest", 101.00));
+        //models.add(new Model("falcon:40b-instruct", ollamaProperties, "langchain4j/ollama-falcon:40b-instruct:latest", 24.00));
+        //models.add(new Model("falcon:180b-instruct", ollamaProperties, "langchain4j/ollama-falcon:180b-instruct:latest", 101.00));
 
         //everythinglm - The Everything Language Model is a Llama 2-based model with a 16k context released by Totally Not An LLM (Kai Howard). It was trained with the EverythingLM Dataset and is uncensored. https://ollama.com/library/everythinglm
         models.add(new Model("everythinglm", ollamaProperties, "langchain4j/ollama-everythinglm:latest", 7.400));
@@ -99,7 +99,7 @@ public class PopulateOllamaModels {
         //stable-beluga - Llama 2 based model fine tuned on an Orca-style dataset. Originally called Free Willy. https://ollama.com/library/stable-beluga
         models.add(new Model("stable-beluga", ollamaProperties, "langchain4j/ollama-stable-beluga:latest", 3.800));
         models.add(new Model("stable-beluga:13b", ollamaProperties, "langchain4j/ollama-stable-beluga:13b:latest", 7.400));
-        models.add(new Model("stable-beluga:70b", ollamaProperties, "langchain4j/ollama-stable-beluga:70b:latest", 39.00));
+        //models.add(new Model("stable-beluga:70b", ollamaProperties, "langchain4j/ollama-stable-beluga:70b:latest", 39.00));
 
         //yarn-mistral - An extension of Mistral to support context windows of 64K or 128K. https://ollama.com/library/yarn-mistral
         models.add(new Model("yarn-mistral", ollamaProperties, "langchain4j/ollama-yarn-mistral:latest", 4.100));
@@ -124,7 +124,7 @@ public class PopulateOllamaModels {
         models.add(new Model("alfred", ollamaProperties, "langchain4j/ollama-alfred:latest", 24.00));
 
         //megadolphin - MegaDolphin-2.2-120b is a transformation of Dolphin-2.2-70b created by interleaving the model with itself. https://ollama.com/library/megadolphin
-        models.add(new Model("megadolphin", ollamaProperties, "langchain4j/ollama-megadolphin:latest", 68.00));
+        //models.add(new Model("megadolphin", ollamaProperties, "langchain4j/ollama-megadolphin:latest", 68.00));
 
         //wizardlm - General use 70 billion parameter model based on Llama 2. https://ollama.com/library/wizardlm
         models.add(new Model("wizardlm:7b-q4_0", ollamaProperties, "langchain4j/ollama-wizardlm:7b-q4_0:latest", 3.800));
@@ -150,23 +150,23 @@ public class PopulateOllamaModels {
         models.add(new Model("codellama:70b-instruct", ollamaProperties, "langchain4j/ollama-codellama:70b-instruct:latest", 39.00));
         models.add(new Model("codellama:13b-code", ollamaProperties, "langchain4j/ollama-codellama:13b-code:latest", 7.400));
         models.add(new Model("codellama:34b-code", ollamaProperties, "langchain4j/ollama-codellama:34b-code:latest", 19.00));
-        models.add(new Model("codellama:70b-code", ollamaProperties, "langchain4j/ollama-codellama:70b-code:latest", 39.00));
+        //models.add(new Model("codellama:70b-code", ollamaProperties, "langchain4j/ollama-codellama:70b-code:latest", 39.00));
         models.add(new Model("codellama:13b", ollamaProperties, "langchain4j/ollama-codellama:13b:latest", 7.400));
         models.add(new Model("codellama:34b", ollamaProperties, "langchain4j/ollama-codellama:34b:latest", 19.00));
-        models.add(new Model("codellama:70b", ollamaProperties, "langchain4j/ollama-codellama:70b:latest", 39.00));
+        //models.add(new Model("codellama:70b", ollamaProperties, "langchain4j/ollama-codellama:70b:latest", 39.00));
         models.add(new Model("codellama:13b-python", ollamaProperties, "langchain4j/ollama-codellama:13b-python:latest", 7.400));
         models.add(new Model("codellama:34b-python", ollamaProperties, "langchain4j/ollama-codellama:34b-python:latest", 19.00));
-        models.add(new Model("codellama:70b-python", ollamaProperties, "langchain4j/ollama-codellama:70b-python:latest", 39.00));
+        //models.add(new Model("codellama:70b-python", ollamaProperties, "langchain4j/ollama-codellama:70b-python:latest", 39.00));
 
         //deepseek-coder - DeepSeek Coder is a capable coding model trained on two trillion code and natural language tokens. https://ollama.com/library/deepseek-coder
         models.add(new Model("deepseek-coder", ollamaProperties, "samuelteg/deepseek-coder:latest", 0.776));
         models.add(new Model("deepseek-coder:6.7b", ollamaProperties, "langchain4j/ollama-deepseek-coder:6.7b:latest", 3.800));
-        models.add(new Model("deepseek-coder:33b", ollamaProperties, "langchain4j/ollama-deepseek-coder:33b:latest", 19.00));
+        //models.add(new Model("deepseek-coder:33b", ollamaProperties, "langchain4j/ollama-deepseek-coder:33b:latest", 19.00));
 
         //wizardcoder - State-of-the-art code generation model. https://ollama.com/library/wizardcoder
         models.add(new Model("wizardcoder", ollamaProperties, "langchain4j/ollama-wizardcoder:latest", 3.800));
         models.add(new Model("wizardcoder:13b", ollamaProperties, "langchain4j/ollama-wizardcoder:13b:latest", 7.400));
-        models.add(new Model("wizardcoder:33b", ollamaProperties, "langchain4j/ollama-wizardcoder:33b:latest", 19.00));
+        //models.add(new Model("wizardcoder:33b", ollamaProperties, "langchain4j/ollama-wizardcoder:33b:latest", 19.00));
 
         //phind-codellama - Phind CodeLlama is a code generation model based on CodeLlama 34B fine-tuned for instruct use cases. https://ollama.com/library/phind-codellama
         models.add(new Model("phind-codellama", ollamaProperties, "langchain4j/ollama-phind-codellama:latest", 19.00));
@@ -195,7 +195,7 @@ public class PopulateOllamaModels {
         // ---- Function Calling Tasks ----
 
         //nexusraven - Nexus Raven is a 13B instruction tuned model for function calling tasks. ==> https://ollama.com/library/nexusraven
-        models.add(new Model("nexusraven", ollamaProperties, "langchain4j/ollama-nexusraven:latest", 19.00));
+        //models.add(new Model("nexusraven", ollamaProperties, "langchain4j/ollama-nexusraven:latest", 19.00));
 
         // ----------------------------------------
 
@@ -203,7 +203,7 @@ public class PopulateOllamaModels {
 
         //math - An advanced language model crafted with 2 trillion bilingual tokens. https://ollama.com/library/deepseek-llm
         models.add(new Model("deepseek-llm", ollamaProperties, "langchain4j/ollama-deepseek-llm:latest", 4.000));
-        models.add(new Model("deepseek-llm:67b", ollamaProperties, "langchain4j/ollama-deepseek-llm:67b:latest", 38.00));
+        //models.add(new Model("deepseek-llm:67b", ollamaProperties, "langchain4j/ollama-deepseek-llm:67b:latest", 38.00));
 
         //llama-pro - An expansion of Llama 2 that specializes in integrating both general language understanding and domain-specific knowledge, particularly in programming and mathematics. https://ollama.com/library/llama-pro
         models.add(new Model("llama-pro", ollamaProperties, "langchain4j/ollama-llama-pro:latest", 4.700));
@@ -226,7 +226,7 @@ public class PopulateOllamaModels {
 
         //llama2-uncensored - Uncensored Llama 2 model by George Sung and Jarrad Hope. https://ollama.com/library/llama2-uncensored
         models.add(new Model("llama2-uncensored", ollamaProperties, "langchain4j/ollama-llama2-uncensored:latest", 3.800));
-        models.add(new Model("llama2-uncensored:70b", ollamaProperties, "langchain4j/ollama-llama2-uncensored:70b:latest", 40.800));
+        //models.add(new Model("llama2-uncensored:70b", ollamaProperties, "langchain4j/ollama-llama2-uncensored:70b:latest", 40.800));
 
         //dolphin-mistral - The uncensored Dolphin model based on Mistral that excels at coding tasks. Updated to version 2.6. https://ollama.com/library/dolphin-mistral
         models.add(new Model("dolphin-mistral", ollamaProperties, "langchain4j/ollama-dolphin-mistral:latest", 4.100));
@@ -265,11 +265,11 @@ public class PopulateOllamaModels {
         models.add(new Model("qwen:4b", ollamaProperties, "langchain4j/ollama-qwen:4b:latest", 2.300));
         models.add(new Model("qwen:7b", ollamaProperties, "langchain4j/ollama-qwen:7b:latest", 4.500));
         models.add(new Model("qwen:14b", ollamaProperties, "langchain4j/ollama-qwen:14b:latest", 8.500));
-        models.add(new Model("qwen:72b", ollamaProperties, "langchain4j/ollama-qwen:72b:latest", 41.00));
+        //models.add(new Model("qwen:72b", ollamaProperties, "langchain4j/ollama-qwen:72b:latest", 41.00));
 
         //yi - A high-performing, bilingual language model. https://ollama.com/library/yi
         models.add(new Model("yi", ollamaProperties, "langchain4j/yi:latest", 3.500));
-        models.add(new Model("yi:34b", ollamaProperties, "langchain4j/yi:34b:latest", 19.00));
+        //models.add(new Model("yi:34b", ollamaProperties, "langchain4j/yi:34b:latest", 19.00));
 
         // ----------------
 
@@ -298,7 +298,7 @@ public class PopulateOllamaModels {
         //wizard-math - WizardMath was released by WizardLM. It is trained on the GSM8k dataset, and targeted at math questions. It is available in 7B, 13B, and 70B parameter sizes. https://ollama.com/library/wizard-math
         models.add(new Model("wizard-math", ollamaProperties, "langchain4j/ollama-wizard-math:latest", 4.100));
         models.add(new Model("wizard-math:13b", ollamaProperties, "langchain4j/ollama-wizard-math:13b:latest", 7.400));
-        models.add(new Model("wizard-math:70b", ollamaProperties, "langchain4j/ollama-wizard-math:70b:latest", 39.00));
+        //models.add(new Model("wizard-math:70b", ollamaProperties, "langchain4j/ollama-wizard-math:70b:latest", 39.00));
 
         // ----------------------------------
 
@@ -317,7 +317,7 @@ public class PopulateOllamaModels {
 
         //meditron - Open-source medical large language model adapted from Llama 2 to the medical domain. https://ollama.com/library/meditron
         models.add(new Model("meditron", ollamaProperties, "langchain4j/ollama-meditron:latest", 3.800));
-        models.add(new Model("meditron:70b", ollamaProperties, "langchain4j/ollama-meditron:70b:latest", 39.00));
+        //models.add(new Model("meditron:70b", ollamaProperties, "langchain4j/ollama-meditron:70b:latest", 39.00));
 
         // ----------------------------------
 
