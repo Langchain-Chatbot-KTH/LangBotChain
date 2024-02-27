@@ -58,6 +58,7 @@ public class StreamGeneration {
                                 "message", token,
                                 "uuid", uuid
                         ));
+                        System.out.println(token);
                         kafkaTemplate.send("answers", jsonMessageResponse);
                     } catch (IOException e) {
                         futureResponse.completeExceptionally(e);

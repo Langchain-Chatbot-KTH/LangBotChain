@@ -25,4 +25,5 @@ public class DocumentGenerationController {
             @RequestParam String modelName) throws IOException {
         return documentGenerationService.generateTextWithDocument(message,document, modelName);
     }
+
 }

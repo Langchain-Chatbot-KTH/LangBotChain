@@ -1,6 +1,7 @@
 package com.dev.langbotchain.langchain4j.spring.Externals.Service;
 
 import com.dev.langbotchain.langchain4j.spring.Generation.Document.DocumentToTextGeneration;
+import dev.langchain4j.service.TokenStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
