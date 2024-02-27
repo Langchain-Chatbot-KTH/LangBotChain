@@ -1,5 +1,6 @@
 package com.dev.langbotchain.langchain4j.spring.Generation.Stream;
 
+import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralAgent;
 import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralStreamAssistant;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.ModelList;
@@ -8,8 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentParser;
 import dev.langchain4j.data.document.DocumentSplitter;
+import dev.langchain4j.data.document.loader.UrlDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
-import dev.langchain4j.data.document.parser.apache.pdfbox.ApachePdfBoxDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.message.AiMessage;
@@ -29,45 +30,37 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.shaded.org.apache.commons.io.FilenameUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.*;
+import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.createContainer;
+import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.isContainerRunning;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
 import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.InitializeStreamByModel.initializeModel;
 
 @Component
-public class DocumentToStreamGeneration {
-
-
+public class URLToStreamGeneration {
     private GeneralStreamAssistant assistant;
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public DocumentToStreamGeneration(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    public URLToStreamGeneration(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
         this.objectMapper = objectMapper;
     }
 
-
-    public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid) throws IOException {
-
+    public void generateStreamWithURL(String question, String UrlPath, String modelName, String uuid) {
         Model modelObject = ModelList.findModelByName(modelName);
         if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
-            GenericContainer<?>  model = createContainer(modelObject.getLangchain4JDockerPath());
-            assert model != null;
+            GenericContainer<?> model = createContainer(modelObject.getLangchain4JDockerPath());
             model.start();
-            initializeTokenStreamWithDocument(document, modelObject);
+            initializeTextWithUrl(UrlPath, modelObject);
         }
-
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
         TokenStream tokenStream = assistant.chat(question);
@@ -100,52 +93,24 @@ public class DocumentToStreamGeneration {
                 .start();
 
         futureResponse.join();
+
     }
 
-
-    //This method only supports pdf and txt parser atm.
-    //This is duplicated from DocumentToTextGeneration
-    private DocumentParser createDocumentParser(MultipartFile userDocument) throws UnsupportedOperationException {
-        if (userDocument != null) {
-            String extension = FilenameUtils.getExtension(userDocument.getOriginalFilename());
-            switch (extension) {
-                case "pdf":
-                    return new ApachePdfBoxDocumentParser();
-                case "txt":
-                    return new TextDocumentParser();
-                default:
-                    throw new UnsupportedOperationException("Not supporting this filetype: " + extension);
-            }
-        } else {
-            throw new IllegalArgumentException("Both userDocument cannot be null");
-        }
-    }
-
-    public void initializeTokenStreamWithDocument(MultipartFile userDocument, Model model) throws IOException {
+    private void initializeTextWithUrl(String UrlPath, Model model) {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
-
-        DocumentParser documentParser = createDocumentParser(userDocument);
-
-        //This parses the Multipartfile from the request to a Document which is needed for the langchain4j splitter
-        InputStream fileInputStream = userDocument.getInputStream();
-        Document document = documentParser.parse(fileInputStream);
-        fileInputStream.close();
+        DocumentParser documentParser = new TextDocumentParser();
+        Document document = UrlDocumentLoader.load(UrlPath, documentParser);
 
         ContentRetriever contentRetriever = createContentRetriever(document);
 
-
-        // The final step is to build our AI Service,
-        // configuring it to use the components we've created above.
-
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
-                //.contentRetriever(contentRetriever)
                 .retriever(tempRetriever(document))
                 //.chatMemory(chatMemory)
                 .build();
 
+        System.out.println("Assistant with URL is loaded");
     }
-
 
     private Retriever<TextSegment> tempRetriever(Document document){
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
@@ -162,8 +127,5 @@ public class DocumentToStreamGeneration {
         return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
     }
 
-//    private TokenStream chat(String message) {
-//        System.out.println("do we get to chat?");
-//        return assistant.chat(message); }
 
 }

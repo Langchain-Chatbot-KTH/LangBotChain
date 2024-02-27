@@ -15,6 +15,6 @@ public class DocumentStreamGenerationService {
     }
 
     public void generateStreamWithDocument(String question, MultipartFile document, String model, String uuid) throws IOException {
-        documentToStreamGeneration.GenerateStreamWithDocument(question, document, model, uuid);
+        documentToStreamGeneration.generateStreamWithDocument(question, document, model, uuid);
     }
 }
