@@ -1,5 +1,6 @@
 package com.dev.langbotchain.langchain4j.spring.Generation.Stream;
 
+import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralStreamAssistant;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.ModelList;
@@ -22,8 +23,9 @@ import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.Initiali
 @Component
 public class StreamGeneration {
 
-    interface Assistant { TokenStream chat(String message);}
+    //interface Assistant { TokenStream chat(String message);}
 
+    private GeneralStreamAssistant assistant;
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
@@ -40,7 +42,7 @@ public class StreamGeneration {
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
-        Assistant assistant = AiServices.create(Assistant.class, initializeModel(modelObject));
+        assistant = AiServices.create(GeneralStreamAssistant.class, initializeModel(modelObject));
 
         TokenStream tokenStream = assistant.chat(question);
 
@@ -50,6 +52,7 @@ public class StreamGeneration {
                                 "message", token,
                                 "uuid", uuid
                         ));
+                        System.out.println(token);
                         kafkaTemplate.send("answers", jsonMessageResponse);
                     } catch (IOException e) {
                         futureResponse.completeExceptionally(e);

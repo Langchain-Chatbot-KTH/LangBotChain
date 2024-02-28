@@ -24,4 +24,5 @@ public class DocumentGenerationController {
             @RequestPart("document") MultipartFile document) throws IOException {
         return documentGenerationService.generateTextWithDocument(message,document);
     }
+
 }
