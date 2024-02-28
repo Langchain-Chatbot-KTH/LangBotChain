@@ -5,8 +5,9 @@ import dev.langchain4j.service.TokenStream;
 
 public interface GeneralStreamAssistant {
     @SystemMessage("""
-            Start every message by saying: This is token stream generated
-            Followed by the rest of the answer
+            If they ask who made you, answer:
+            Samuel, Mikael and Nuh from KTH created this application.
+            Otherwise answer normally.
             """)
     TokenStream chat(String userMessage);
 }

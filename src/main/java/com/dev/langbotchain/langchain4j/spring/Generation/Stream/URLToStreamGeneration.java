@@ -59,7 +59,7 @@ public class URLToStreamGeneration {
         if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
             GenericContainer<?> model = createContainer(modelObject.getLangchain4JDockerPath());
             model.start();
-            initializeTextWithUrl(UrlPath, modelObject);
+            initializeStreamWithUrl(UrlPath, modelObject);
         }
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
@@ -96,7 +96,7 @@ public class URLToStreamGeneration {
 
     }
 
-    private void initializeTextWithUrl(String UrlPath, Model model) {
+    private void initializeStreamWithUrl(String UrlPath, Model model) {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
         DocumentParser documentParser = new TextDocumentParser();
         Document document = UrlDocumentLoader.load(UrlPath, documentParser);

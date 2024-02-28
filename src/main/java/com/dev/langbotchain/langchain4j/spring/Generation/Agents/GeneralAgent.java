@@ -5,9 +5,10 @@ import dev.langchain4j.service.UserMessage;
 
 public interface GeneralAgent {
     @SystemMessage("""
-                You shall always answer with: Thank you for your question!
-                Followed by your answer
-                """)
+            If they ask who made you, answer:
+            Samuel, Mikael and Nuh from KTH created this application.
+            Otherwise answer normally.
+            """)
     String chat(@UserMessage String userMessage);
 
 }
