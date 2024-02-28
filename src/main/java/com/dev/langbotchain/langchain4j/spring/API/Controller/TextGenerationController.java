@@ -1,6 +1,6 @@
-package com.dev.langbotchain.langchain4j.spring.Externals.Controller;
+package com.dev.langbotchain.langchain4j.spring.API.Controller;
 
-import com.dev.langbotchain.langchain4j.spring.Externals.Service.TextGenerationService;
+import com.dev.langbotchain.langchain4j.spring.API.Service.TextGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -31,14 +33,13 @@ public class TextGenerationController {
 
     @GetMapping("/text")
     public void generateText(@RequestParam String message,
-                                     @RequestParam String modelName,
-                                     @RequestParam String uuid)  throws JsonProcessingException {
+                                     @RequestParam String uuid) throws IOException {
         String jsonMessageQuestion = objectMapper.writeValueAsString(Map.of(
                 "message", message,
                 "uuid", uuid
         ));
         kafkaTemplate.send("questions", jsonMessageQuestion); // Not done in correct way. generateTextLlama2 should be listening on the topic.
-        String answer = textGenerationService.generateText(message, modelName, uuid);
+        String answer = textGenerationService.generateText(message, uuid);
         String jsonMessageResponse = objectMapper.writeValueAsString(Map.of(
                 "message", answer,
                 "uuid", uuid
@@ -48,9 +49,8 @@ public class TextGenerationController {
 
     @GetMapping("/WholeText")
     public String generateWholeText(@RequestParam String message,
-                             @RequestParam String modelName,
-                             @RequestParam String uuid) {
-        return textGenerationService.generateText(message, modelName, uuid);
+                             @RequestParam String uuid) throws IOException {
+        return textGenerationService.generateText(message, uuid);
     }
 
     @GetMapping("/health")

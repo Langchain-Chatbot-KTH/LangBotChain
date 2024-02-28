@@ -1,13 +1,12 @@
-package com.dev.langbotchain.langchain4j.spring.Generation.Document;
+package com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.DocsAnalyzer;
 
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import java.util.List;
 
 import static com.dev.langbotchain.langchain4j.spring.Config.ModelConfig.OllamaConfig.Ollama_model_names.OLLAMA_MODEL_NAMES;
-import static com.dev.langbotchain.langchain4j.spring.Generation.Document.OllamaDocumentInit.initializeOllamaModel;
+import static com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.DocsAnalyzer.OllamaDocumentInitAnalyzer.initializeOllamaModel;
 
-public class InitializeDocumentByModel {
+public class InitializeDocumentByModelAnalyzer {
 
     protected static ChatLanguageModel initializeModel(Model model) {
         String modelName = model.getName().toLowerCase();

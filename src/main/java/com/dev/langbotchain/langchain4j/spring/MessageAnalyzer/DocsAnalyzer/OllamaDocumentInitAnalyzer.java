@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.Generation.URL;
+package com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.DocsAnalyzer;
 
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
 import dev.langchain4j.model.chat.ChatLanguageModel;
@@ -8,7 +8,7 @@ import java.time.Duration;
 
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.baseUrl;
 
-public class OllamaURLInit {
+public class OllamaDocumentInitAnalyzer {
     protected static ChatLanguageModel initializeOllamaModel(Model modelObject){
         ChatLanguageModel model = OllamaChatModel.builder()
                 .baseUrl(baseUrl)

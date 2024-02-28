@@ -1,6 +1,6 @@
-package com.dev.langbotchain.langchain4j.spring.Externals.Controller;
+package com.dev.langbotchain.langchain4j.spring.API.Controller;
 
-import com.dev.langbotchain.langchain4j.spring.Externals.Service.DocumentGenerationService;
+import com.dev.langbotchain.langchain4j.spring.API.Service.DocumentGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,8 +21,7 @@ public class DocumentGenerationController {
     @PostMapping("/document")
     public String generateTextWithDocument(
             @RequestParam String message,
-            @RequestPart("document") MultipartFile document,
-            @RequestParam String modelName) throws IOException {
-        return documentGenerationService.generateTextWithDocument(message,document, modelName);
+            @RequestPart("document") MultipartFile document) throws IOException {
+        return documentGenerationService.generateTextWithDocument(message,document);
     }
 }
