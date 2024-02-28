@@ -1,6 +1,5 @@
 package com.dev.langbotchain.langchain4j.spring.Generation.Stream;
 
-import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralAgent;
 import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralStreamAssistant;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.ModelList;
@@ -37,8 +36,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.createContainer;
-import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.isContainerRunning;
+import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
+import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.isContainerRunning;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
 import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.InitializeStreamByModel.initializeModel;
 
@@ -55,12 +54,17 @@ public class URLToStreamGeneration {
     }
 
     public void generateStreamWithURL(String question, String UrlPath, String modelName, String uuid) {
-        Model modelObject = ModelList.findModelByName(modelName);
+/*        Model modelObject = ModelList.findModelByName(modelName);
         if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
             GenericContainer<?> model = createContainer(modelObject.getLangchain4JDockerPath());
             model.start();
             initializeStreamWithUrl(UrlPath, modelObject);
-        }
+        }*/
+        Model modelObject = ModelList.findModelByName(modelName);
+        checkOllamaServerAndInitializeModel(modelObject);
+        //This initialize should use a boolean check if assistant is initialized with the tokenstream
+        initializeStreamWithUrl(UrlPath, modelObject);
+
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
         TokenStream tokenStream = assistant.chat(question);
@@ -97,6 +101,7 @@ public class URLToStreamGeneration {
     }
 
     private void initializeStreamWithUrl(String UrlPath, Model model) {
+        if(assistant != null) { return; }
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
         DocumentParser documentParser = new TextDocumentParser();
         Document document = UrlDocumentLoader.load(UrlPath, documentParser);
@@ -105,14 +110,14 @@ public class URLToStreamGeneration {
 
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
-                .retriever(tempRetriever(document))
+                .retriever(retriever(document))
                 //.chatMemory(chatMemory)
                 .build();
 
         System.out.println("Assistant with URL is loaded");
     }
 
-    private Retriever<TextSegment> tempRetriever(Document document){
+    private Retriever<TextSegment> retriever(Document document){
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 

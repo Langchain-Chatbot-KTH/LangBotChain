@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.*;
+import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
 import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.InitializeStreamByModel.initializeModel;
 
@@ -60,13 +60,17 @@ public class DocumentToStreamGeneration {
 
     public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid) throws IOException {
 
-        Model modelObject = ModelList.findModelByName(modelName);
+/*        Model modelObject = ModelList.findModelByName(modelName);
         if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
             GenericContainer<?>  model = createContainer(modelObject.getLangchain4JDockerPath());
             assert model != null;
             model.start();
             initializeTokenStreamWithDocument(document, modelObject);
-        }
+        }*/
+        Model modelObject = ModelList.findModelByName(modelName);
+        checkOllamaServerAndInitializeModel(modelObject);
+        //This initialize should use a boolean check if assistant is initialized with the tokenstream
+        initializeTokenStreamWithDocument(document, modelObject);
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
@@ -122,6 +126,7 @@ public class DocumentToStreamGeneration {
     }
 
     public void initializeTokenStreamWithDocument(MultipartFile userDocument, Model model) throws IOException {
+        if(assistant != null) { return; }
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         DocumentParser documentParser = createDocumentParser(userDocument);
@@ -140,14 +145,14 @@ public class DocumentToStreamGeneration {
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
                 //.contentRetriever(contentRetriever)
-                .retriever(tempRetriever(document))
+                .retriever(retriever(document))
                 //.chatMemory(chatMemory)
                 .build();
 
     }
 
 
-    private Retriever<TextSegment> tempRetriever(Document document){
+    private Retriever<TextSegment> retriever(Document document){
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 

@@ -5,9 +5,8 @@ import dev.langchain4j.service.UserMessage;
 
 public interface GeneralAgent {
     @SystemMessage("""
-            If they ask who made you, answer:
-            Samuel, Mikael and Nuh from KTH created this application.
-            Otherwise answer normally.
+            Answer with "Thank you for your question"
+            Followed by the answer
             """)
     String chat(@UserMessage String userMessage);
 
