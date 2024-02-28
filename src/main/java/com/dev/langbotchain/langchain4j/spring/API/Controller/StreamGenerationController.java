@@ -1,16 +1,13 @@
-package com.dev.langbotchain.langchain4j.spring.Externals.Controller;
+package com.dev.langbotchain.langchain4j.spring.API.Controller;
 
-import com.dev.langbotchain.langchain4j.spring.Externals.Service.StreamGenerationService;
+import com.dev.langbotchain.langchain4j.spring.API.Service.StreamGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
-import java.io.OutputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/generateStream")
@@ -25,9 +22,8 @@ public class StreamGenerationController {
 
     @GetMapping("/model")
     public String generateText(@RequestParam String message,
-                                               @RequestParam String model,
-                                               @RequestParam String uuid) {
-        streamGenerationService.generateStream(message, model, uuid);
+                                               @RequestParam String uuid) throws IOException {
+        streamGenerationService.generateStream(message, uuid);
         return "Streaming";
     }
 

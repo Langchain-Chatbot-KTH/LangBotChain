@@ -17,34 +17,27 @@
 
 Model Name: llama2
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2:latest
+Model Docker Image: llama2:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: llama2:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2:13b:latest
+Model Docker Image: llama2:13b
 Model Size: 7.3 GB
 ---------------------------
 Model Name: llama2:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2:70b:latest
+Model Docker Image: llama2:70b
 Model Size: 39.0 GB
 ---------------------------
-        .__          __                .__   
-  _____ |__| _______/  |_____________  |  |  
- /     \|  |/  ___/\   __\_  __ \__  \ |  |  
-|  Y Y  \  |\___ \  |  |  |  | \// __ \|  |__
-|__|_|  /__/____  > |__|  |__|  (____  /____/
-      \/        \/                   \/       
-
-Model Name: mistral:7.3b
+Model Name: mistral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mistral:latest
+Model Docker Image: mistral:latest
 Model Size: 4.1 GB
 ---------------------------
 Model Name: mistral:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mistral:instruct:latest
+Model Docker Image: mistral:instruct
 Model Size: 4.1 GB
 ---------------------------
         .__          __                .__   
@@ -56,12 +49,12 @@ Model Size: 4.1 GB
 
 Model Name: mixtral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mixtral:latest
+Model Docker Image: mixtral:latest
 Model Size: 26.0 GB
 ---------------------------
 Model Name: mixtral:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mixtral:instruct:latest
+Model Docker Image: mixtral:instruct
 Model Size: 26.0 GB
 ---------------------------
        .__    .__ 
@@ -73,7 +66,7 @@ ______ |  |__ |__|
 
 Model Name: phi
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-phi:latest
+Model Docker Image: phi:latest
 Model Size: 1.7 GB
 ---------------------------
                                   .__                   .__            __   
@@ -85,7 +78,7 @@ Model Size: 1.7 GB
 
 Model Name: neural-chat
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-neural-chat:latest
+Model Docker Image: neural-chat:latest
 Model Size: 4.1 GB
 ---------------------------
           __               .__  .__                         .__           
@@ -97,7 +90,7 @@ Model Size: 4.1 GB
 
 Model Name: starling-lm
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starling-lm:latest
+Model Docker Image: starling-lm:latest
 Model Size: 4.1 GB
 ---------------------------
                      .__                   
@@ -109,7 +102,7 @@ ________ ____ ______ |  |__ ___.__._______
 
 Model Name: zephyr
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-zephyr:latest
+Model Docker Image: zephyr:latest
 Model Size: 4.1 GB
 ---------------------------
                                               .__       .__ 
@@ -121,22 +114,22 @@ Model Size: 4.1 GB
 
 Model Name: orca-mini
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca-mini:latest
+Model Docker Image: orca-mini:latest
 Model Size: 1.9 GB
 ---------------------------
 Model Name: orca-mini:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca-mini:7b:latest
+Model Docker Image: orca-mini:7b
 Model Size: 3.8 GB
 ---------------------------
 Model Name: orca-mini:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca-mini:13b:latest
+Model Docker Image: orca-mini:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: orca-mini:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca-mini:70b:latest
+Model Docker Image: orca-mini:70b
 Model Size: 39.0 GB
 ---------------------------
       .__                            
@@ -148,17 +141,17 @@ ___  _|__| ____  __ __  ____ _____
 
 Model Name: vicuna
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-vicuna:latest
+Model Docker Image: vicuna:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: vicuna:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-vicuna:13b:latest
+Model Docker Image: vicuna:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: vicuna:33b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-vicuna:33b:latest
+Model Docker Image: vicuna:33b
 Model Size: 18.0 GB
 ---------------------------
 .__  .__                       
@@ -170,17 +163,17 @@ Model Size: 18.0 GB
 
 Model Name: llava:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-ollama-llava:latest
+Model Docker Image: ollama-llava:latest
 Model Size: 4.5 GB
 ---------------------------
 Model Name: llava:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llava:13b:latest
+Model Docker Image: llava:13b
 Model Size: 8.0 GB
 ---------------------------
 Model Name: llava:34b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llava:34b:latest
+Model Docker Image: llava:34b
 Model Size: 34.0 GB
 ---------------------------
                                        
@@ -192,17 +185,17 @@ Model Size: 34.0 GB
 
 Model Name: gemma:2b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-gemma:2b:latest
+Model Docker Image: gemma:2b
 Model Size: 1.4 GB
 ---------------------------
 Model Name: gemma:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-gemma:7b:latest
+Model Docker Image: gemma:7b
 Model Size: 4.8 GB
 ---------------------------
 Model Name: gemma:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: samuelteg/gemma:instruct
+Model Docker Image: gemma:instruct
 Model Size: 5.2 GB
 ---------------------------
                             .__                                        
@@ -214,7 +207,7 @@ Model Size: 5.2 GB
 
 Model Name: openhermes
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-openhermes:latest
+Model Docker Image: openhermes:latest
 Model Size: 4.1 GB
 ---------------------------
   __  .__              .__  .__                         
@@ -226,7 +219,7 @@ _/  |_|__| ____ ___.__.|  | |  | _____    _____ _____
 
 Model Name: tinyllama
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-tinyllama:latest
+Model Docker Image: tinyllama:latest
 Model Size: 0.638 GB
 ---------------------------
                                    .__            __   
@@ -238,7 +231,7 @@ Model Size: 0.638 GB
 
 Model Name: openchat
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-openchat:latest
+Model Docker Image: openchat:latest
 Model Size: 4.1 GB
 ---------------------------
                              ________  
@@ -250,12 +243,12 @@ Model Size: 4.1 GB
 
 Model Name: orca2
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca2:latest
+Model Docker Image: orca2:latest
 Model Size: 4.1 GB
 ---------------------------
 Model Name: orca2:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-orca2:13b:latest
+Model Docker Image: orca2:13b
 Model Size: 7.8 GB
 ---------------------------
   _____       .__                       
@@ -266,32 +259,32 @@ _/ ____\____  |  |   ____  ____   ____
             \/          \/           \/ 
 Model Name: falcon
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:latest
+Model Docker Image: falcon:latest
 Model Size: 4.1 GB
 ---------------------------
 Model Name: falcon:40b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:40b:latest
+Model Docker Image: falcon:40b
 Model Size: 24.0 GB
 ---------------------------
 Model Name: falcon:180b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:180b:latest
+Model Docker Image: falcon:180b
 Model Size: 101.0 GB
 ---------------------------
 Model Name: falcon:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:instruct:latest
+Model Docker Image: falcon:instruct
 Model Size: 4.1 GB
 ---------------------------
 Model Name: falcon:40b-instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:40b-instruct:latest
+Model Docker Image: falcon:40b-instruct
 Model Size: 24.0 GB
 ---------------------------
 Model Name: falcon:180b-instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-falcon:180b-instruct:latest
+Model Docker Image: falcon:180b-instruct
 Model Size: 101.0 GB
 ---------------------------
                                    __  .__    .__               .__           
@@ -303,7 +296,7 @@ _/ __ \  \/ // __ \_  __ <   |  |\   __\  |  \|  |/    \  / ___\|  |  /     \
 
 Model Name: everythinglm
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-everythinglm:latest
+Model Docker Image: everythinglm:latest
 Model Size: 7.4 GB
 ---------------------------
 ___.           __   .__  .__                       
@@ -315,7 +308,7 @@ ___.           __   .__  .__
 
 Model Name: bakllava
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-bakllava:latest
+Model Docker Image: bakllava:latest
 Model Size: 7.4 GB
 ---------------------------
              .__                
@@ -326,7 +319,7 @@ Model Size: 7.4 GB
      \/                \/       
 Model Name: solar
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-solar:latest
+Model Docker Image: solar:latest
 Model Size: 6.1 GB
 ---------------------------
           __        ___.   .__                  ___.          .__                      
@@ -338,17 +331,17 @@ Model Size: 6.1 GB
 
 Model Name: stable-beluga
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stable-beluga:latest
+Model Docker Image: stable-beluga:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: stable-beluga:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stable-beluga:13b:latest
+Model Docker Image: stable-beluga:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: stable-beluga:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stable-beluga:70b:latest
+Model Docker Image: stable-beluga:70b
 Model Size: 39.0 GB
 ---------------------------
                                               .__          __                .__   
@@ -360,7 +353,7 @@ Model Size: 39.0 GB
 
 Model Name: yarn-mistral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-yarn-mistral:latest
+Model Docker Image: yarn-mistral:latest
 Model Size: 4.1 GB
 ---------------------------
                                       __  .__                             .__          __                .__   
@@ -372,7 +365,7 @@ Model Size: 4.1 GB
 
 Model Name: samantha-mistral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-samantha-mistral:latest
+Model Docker Image: samantha-mistral:latest
 Model Size: 4.1 GB
 ---------------------------
           __        ___.   .__         .__                                         .__                   
@@ -384,7 +377,7 @@ Model Size: 4.1 GB
 
 Model Name: stablelm-zephyr
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stablelm-zephyr:latest
+Model Docker Image: stablelm-zephyr:latest
 Model Size: 1.6 GB
 ---------------------------
         .__                         .___              .__                            
@@ -396,7 +389,7 @@ __  _  _|__|____________ _______  __| _/        ___  _|__| ____  __ __  ____ ___
 
 Model Name: wizard-vicuna
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizard-vicuna:latest
+Model Docker Image: wizard-vicuna:latest
 Model Size: 7.4 GB
 ---------------------------
                                       .__  .__                         ________  
@@ -408,12 +401,12 @@ Model Size: 7.4 GB
 
 Model Name: yarn-llama2
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-yarn-llama2:latest
+Model Docker Image: yarn-llama2:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: yarn-llama2:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-yarn-llama2:13b:latest
+Model Docker Image: yarn-llama2:13b
 Model Size: 7.4 GB
 ---------------------------
                __                
@@ -425,7 +418,7 @@ Model Size: 7.4 GB
 
 Model Name: notux
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-notux:latest
+Model Docker Image: notux:latest
 Model Size: 26.0 GB
 ---------------------------
        .__   _____                   .___
@@ -437,7 +430,7 @@ _____  |  |_/ ____\______   ____   __| _/
 
 Model Name: alfred
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-alfred:latest
+Model Docker Image: alfred:latest
 Model Size: 24.0 GB
 ---------------------------
                                  .___     .__         .__    .__        
@@ -449,7 +442,7 @@ Model Size: 24.0 GB
 
 Model Name: megadolphin
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-megadolphin:latest
+Model Docker Image: megadolphin:latest
 Model Size: 68.0 GB
 ---------------------------
         .__                         .___.__           
@@ -461,7 +454,7 @@ __  _  _|__|____________ _______  __| _/|  |   _____
 
 Model Name: wizardlm:7b-q4_0
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizardlm:7b-q4_0:latest
+Model Docker Image: wizardlm:7b-q4_0:latest
 Model Size: 3.8 GB
 ---------------------------
         .__          __                .__  .__  .__  __          
@@ -473,7 +466,7 @@ Model Size: 3.8 GB
 
 Model Name: mistrallite
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mistrallite:latest
+Model Docker Image: mistrallite:latest
 Model Size: 3.8 GB
 ---------------------------
 _________  ________  ________  ___________              _____   ________  ________  ___________.____       _________
@@ -494,72 +487,72 @@ _/ ___\/  _ \ / __ |/ __ \|  | |  | \__  \  /     \\__  \
 
 Model Name: codellama
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:latest
+Model Docker Image: codellama:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: codellama:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:instruct:latest
+Model Docker Image: codellama:instruct
 Model Size: 3.8 GB
 ---------------------------
 Model Name: codellama:13b-instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:13b-instruct:latest
+Model Docker Image: codellama:13b-instruct
 Model Size: 7.4 GB
 ---------------------------
 Model Name: codellama:34b-instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:34b-instruct:latest
+Model Docker Image: codellama:34b-instruct
 Model Size: 19.0 GB
 ---------------------------
 Model Name: codellama:70b-instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:70b-instruct:latest
+Model Docker Image: codellama:70b-instruct
 Model Size: 39.0 GB
 ---------------------------
 Model Name: codellama:13b-code
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:13b-code:latest
+Model Docker Image: codellama:13b-code
 Model Size: 7.4 GB
 ---------------------------
 Model Name: codellama:34b-code
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:34b-code:latest
+Model Docker Image: codellama:34b-code
 Model Size: 19.0 GB
 ---------------------------
 Model Name: codellama:70b-code
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:70b-code:latest
+Model Docker Image: codellama:70b-code
 Model Size: 39.0 GB
 ---------------------------
 Model Name: codellama:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:13b:latest
+Model Docker Image: codellama:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: codellama:34b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:34b:latest
+Model Docker Image: codellama:34b
 Model Size: 19.0 GB
 ---------------------------
 Model Name: codellama:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:70b:latest
+Model Docker Image: codellama:70b
 Model Size: 39.0 GB
 ---------------------------
 Model Name: codellama:13b-python
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:13b-python:latest
+Model Docker Image: codellama:13b-python
 Model Size: 7.4 GB
 ---------------------------
 Model Name: codellama:34b-python
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:34b-python:latest
+Model Docker Image: codellama:34b-python
 Model Size: 19.0 GB
 ---------------------------
 Model Name: codellama:70b-python
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codellama:70b-python:latest
+Model Docker Image: codellama:70b-python
 Model Size: 39.0 GB
 ---------------------------
     .___                                        __                              .___            
@@ -571,17 +564,17 @@ Model Size: 39.0 GB
 
 Model Name: deepseek-coder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: samuelteg/deepseek-coder:latest
+Model Docker Image: deepseek-coder:latest
 Model Size: 0.776 GB
 ---------------------------
 Model Name: deepseek-coder:6.7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-deepseek-coder:6.7b:latest
+Model Docker Image: deepseek-coder:6.7b
 Model Size: 3.8 GB
 ---------------------------
 Model Name: deepseek-coder:33b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-deepseek-coder:33b:latest
+Model Docker Image: deepseek-coder:33b
 Model Size: 19.0 GB
 ---------------------------
         .__                         .___               .___            
@@ -593,17 +586,17 @@ __  _  _|__|____________ _______  __| _/____  ____   __| _/___________
 
 Model Name: wizardcoder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizardcoder:latest
+Model Docker Image: wizardcoder:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: wizardcoder:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizardcoder:13b:latest
+Model Docker Image: wizardcoder:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: wizardcoder:33b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizardcoder:33b:latest
+Model Docker Image: wizardcoder:33b
 Model Size: 19.0 GB
 ---------------------------
        .__    .__            .___                         .___     .__  .__                         
@@ -615,12 +608,12 @@ ______ |  |__ |__| ____    __| _/          ____  ____   __| _/____ |  | |  | ___
 
 Model Name: phind-codellama
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-phind-codellama:latest
+Model Docker Image: phind-codellama:latest
 Model Size: 19.0 GB
 ---------------------------
 Model Name: phind-codellama:34b-python
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-phind-codellama:34b-python:latest
+Model Docker Image: phind-codellama:34b-python:latest
 Model Size: 19.0 GB
 ---------------------------
                  .___                   
@@ -632,12 +625,12 @@ _/ ___\/  _ \ / __ |/ __ \|  |  \____ \
 
 Model Name: codeup
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codeup:latest
+Model Docker Image: codeup:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: codeup:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codeup:13b:latest
+Model Docker Image: codeup:13b
 Model Size: 7.4 GB
 ---------------------------
           __                                 .___            
@@ -649,27 +642,27 @@ Model Size: 7.4 GB
 
 Model Name: starcoder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starcoder:latest
+Model Docker Image: starcoder:latest
 Model Size: 1.8 GB
 ---------------------------
 Model Name: starcoder:1b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starcoder:1b:latest
+Model Docker Image: starcoder:1b
 Model Size: 0.726 GB
 ---------------------------
 Model Name: starcoder:3b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starcoder:3b:latest
+Model Docker Image: starcoder:3b
 Model Size: 1.8 GB
 ---------------------------
 Model Name: starcoder:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starcoder:7b:latest
+Model Docker Image: starcoder:7b
 Model Size: 4.3 GB
 ---------------------------
 Model Name: starcoder:15b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-starcoder:15b:latest
+Model Docker Image: starcoder:15b
 Model Size: 9.0 GB
 ---------------------------
           __        ___.   .__                                    .___      
@@ -681,7 +674,7 @@ Model Size: 9.0 GB
 
 Model Name: stable-code
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stable-code:latest
+Model Docker Image: stable-code:latest
 Model Size: 1.6 GB
 ---------------------------
                        .__                 .___            
@@ -693,7 +686,7 @@ Model Size: 1.6 GB
 
 Model Name: magicoder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-magicoder:latest
+Model Docker Image: magicoder:latest
 Model Size: 3.8 GB
 ---------------------------
                  .___    ___.                               
@@ -705,7 +698,7 @@ _/ ___\/  _ \ / __ |/ __ \| __ \ /  _ \ /  _ \ / ___\__  \
 
 Model Name: codebooga
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-codebooga:latest
+Model Docker Image: codebooga:latest
 Model Size: 19.0 GB
 ---------------------------
                                                                      
@@ -717,7 +710,7 @@ Model Size: 19.0 GB
 
 Model Name: nexusraven
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nexusraven:latest
+Model Docker Image: nexusraven:latest
 Model Size: 19.0 GB
 ---------------------------
    _____      ___________________ ___           _________  ________  ________  ___________            _____   ________  ________  ___________.____       _________ 
@@ -737,12 +730,12 @@ Model Size: 19.0 GB
      \/    \/     \/|__|       \/     \/     \/     \/                         \/ 
 Model Name: deepseek-llm
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-deepseek-llm:latest
+Model Docker Image: deepseek-llm:latest
 Model Size: 4.0 GB
 ---------------------------
 Model Name: deepseek-llm:67b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-deepseek-llm:67b:latest
+Model Docker Image: deepseek-llm:67b
 Model Size: 38.0 GB
 ---------------------------
 .__  .__                                                       
@@ -754,12 +747,12 @@ Model Size: 38.0 GB
 
 Model Name: llama-pro
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama-pro:latest
+Model Docker Image: llama-pro:latest
 Model Size: 4.7 GB
 ---------------------------
 Model Name: llama-pro:instruct
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama-pro:instruct:latest
+Model Docker Image: llama-pro:instruct
 Model Size: 4.7 GB
 ---------------------------
   _________________  .____                 _____   ________  ________  ___________.____       _________
@@ -779,12 +772,12 @@ Model Size: 4.7 GB
      \/   |__|         \/           \/    \/       
 Model Name: sqlcoder
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-sqlcoder:latest
+Model Docker Image: sqlcoder:latest
 Model Size: 4.1 GB
 ---------------------------
 Model Name: sqlcoder:15b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-sqlcoder:15b:latest
+Model Docker Image: sqlcoder:15b
 Model Size: 9.0 GB
 ---------------------------
 .___             __       ._______.                                 .__   
@@ -796,7 +789,7 @@ __| _/\ __   ____ |  | __ __| _/\__ |__             ____   ___________|  |
 
 Model Name: duckdb-nsql
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-duckdb-nsql:latest
+Model Docker Image: duckdb-nsql:latest
 Model Size: 3.8 GB
 ---------------------------
  ____ __________  _________ ___________ _______    _________________ _____________________________       _____   ________  ________  ___________.____       _________
@@ -817,12 +810,12 @@ Model Size: 3.8 GB
 
 Model Name: llama2-uncensored
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2-uncensored:latest
+Model Docker Image: llama2-uncensored:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: llama2-uncensored:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2-uncensored:70b:latest
+Model Docker Image: llama2-uncensored:70b
 Model Size: 40.8 GB
 ---------------------------
    .___     .__         .__    .__                         .__          __                .__   
@@ -834,7 +827,7 @@ Model Size: 40.8 GB
 
 Model Name: dolphin-mistral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-dolphin-mistral:latest
+Model Docker Image: dolphin-mistral:latest
 Model Size: 4.1 GB
 ---------------------------
         .__          __                .__                                                                    
@@ -846,7 +839,7 @@ Model Size: 4.1 GB
 
 Model Name: mistral-openorca
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-mistral-openorca:latest
+Model Docker Image: mistral-openorca:latest
 Model Size: 4.1 GB
 ---------------------------
     .___     .__         .__    .__                         .__          __                .__   
@@ -858,7 +851,7 @@ Model Size: 4.1 GB
 
 Model Name: dolphin-mixtral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-dolphin-mixtral:latest
+Model Docker Image: dolphin-mixtral:latest
 Model Size: 26.0 GB
 ---------------------------
     .___     .__         .__    .__                        .__    .__ 
@@ -870,7 +863,7 @@ Model Size: 26.0 GB
 
 Model Name: dolphin-phi
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-dolphin-phi:latest
+Model Docker Image: dolphin-phi:latest
 Model Size: 1.6 GB
 ---------------------------
         .__                         .___              .__                                                                                                     .___
@@ -882,17 +875,17 @@ __  _  _|__|____________ _______  __| _/        ___  _|__| ____  __ __  ____ ___
 
 Model Name: wizard-vicuna-uncensored
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/wizard-vicuna-uncensored:latest
+Model Docker Image: wizard-vicuna-uncensored
 Model Size: 3.8 GB
 ---------------------------
 Model Name: wizard-vicuna-uncensored:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/wizard-vicuna-uncensored:13b:latest
+Model Docker Image: wizard-vicuna-uncensored:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: wizard-vicuna-uncensored:30b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizard-vicuna-uncensored:30b:latest
+Model Docker Image: wizard-vicuna-uncensored:30b
 Model Size: 18.0 GB
 ---------------------------
   __  .__                 .___     .__         .__    .__        
@@ -903,7 +896,7 @@ _/  |_|__| ____ ___.__. __| _/____ |  | ______ |  |__ |__| ____
               \/\/         \/           |__|        \/        \/ 
 Model Name: tinydolphin
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-tinydolphin:latest
+Model Docker Image: tinydolphin:latest
 Model Size: 0.647 GB
 ---------------------------
         .__                         .___.__                                                                                    .___
@@ -915,7 +908,7 @@ __  _  _|__|____________ _______  __| _/|  |   _____            __ __  ____   __
 
 Model Name: wizardlm-uncensored
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizardlm-uncensored:latest
+Model Docker Image: wizardlm-uncensored
 Model Size: 7.4 GB
 ---------------------------
  _______   ________    _______            ___________ _______    ________.____    .___  _________ ___ ___  
@@ -936,12 +929,12 @@ Model Size: 7.4 GB
 
 Model Name: llama2-chinese
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2-chinese:7b:latest
+Model Docker Image: llama2-chinese:7b
 Model Size: 3.8 GB
 ---------------------------
 Model Name: llama2-chinese:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-llama2-chinese:13b:latest
+Model Docker Image: llama2-chinese:13b
 Model Size: 7.4 GB
 ---------------------------
   ________  _  __ ____   ____  
@@ -952,32 +945,32 @@ Model Size: 7.4 GB
 
 Model Name: qwen:0.5b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:0.5b:latest
+Model Docker Image: qwen:0.5b:latest
 Model Size: 0.395 GB
 ---------------------------
 Model Name: qwen:1.8b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:1.8b:latest
+Model Docker Image: qwen:1.8b
 Model Size: 1.1 GB
 ---------------------------
 Model Name: qwen:4b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:4b:latest
+Model Docker Image: qwen:4b
 Model Size: 2.3 GB
 ---------------------------
 Model Name: qwen:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:7b:latest
+Model Docker Image: qwen:7b
 Model Size: 4.5 GB
 ---------------------------
 Model Name: qwen:14b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:14b:latest
+Model Docker Image: qwen:14b
 Model Size: 8.5 GB
 ---------------------------
 Model Name: qwen:72b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-qwen:72b:latest
+Model Docker Image: qwen:72b:latest
 Model Size: 41.0 GB
 ---------------------------
         .__ 
@@ -989,12 +982,12 @@ Model Size: 41.0 GB
 
 Model Name: yi
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/yi:latest
+Model Docker Image: yi:latest
 Model Size: 3.5 GB
 ---------------------------
 Model Name: yi:34b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/yi:34b:latest
+Model Docker Image: yi:34b
 Model Size: 19.0 GB
 ---------------------------
                                      .__                                        
@@ -1006,17 +999,17 @@ Model Size: 19.0 GB
 
 Model Name: nous-hermes
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nous-hermes:latest
+Model Docker Image: nous-hermes:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: nous-hermes:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nous-hermes:13b:latest
+Model Docker Image: nous-hermes:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: nous-hermes2-mixtral
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nous-hermes2-mixtral:latest
+Model Docker Image: nous-hermes2-mixtral:latest
 Model Size: 26.0 GB
 ---------------------------
           __        ___.   .__         .__           ________  
@@ -1028,7 +1021,7 @@ Model Size: 26.0 GB
 
 Model Name: stablelm2
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-stablelm2:latest
+Model Docker Image: stablelm2:latest
 Model Size: 26.0 GB
 ---------------------------
  _____      ___________________ ___              _____   ________  ________  ___________.____       _________
@@ -1048,17 +1041,17 @@ __  _  _|__|____________ _______  __| _/          _____ _____ _/  |_|  |__
                  \/     \/           \/               \/     \/          \/ 
 Model Name: wizard-math
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizard-math:latest
+Model Docker Image: wizard-math:latest
 Model Size: 4.1 GB
 ---------------------------
 Model Name: wizard-math:13b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizard-math:13b:latest
+Model Docker Image: wizard-math:13b
 Model Size: 7.4 GB
 ---------------------------
 Model Name: wizard-math:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-wizard-math:70b:latest
+Model Docker Image: wizard-math:70b
 Model Size: 39.0 GB
 ---------------------------
   __________________ .______________ __________________.______________.____________           ________  .___  __________________  ____ ___  _________ _________.___________    _______     
@@ -1078,12 +1071,12 @@ Model Size: 39.0 GB
      \/                  \/               \/     \/            \/     \/     \/        \/ 
 Model Name: nous-hermes2
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nous-hermes2:latest
+Model Docker Image: nous-hermes2:latest
 Model Size: 6.1 GB
 ---------------------------
 Model Name: nous-hermes2:34b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-nous-hermes2:34b:latest
+Model Docker Image: nous-hermes2:34b
 Model Size: 6.1 GB
 ---------------------------
    _____  ___________________  .____________     _____  .____                 _____   ________  ________  ___________.____       _________ 
@@ -1103,7 +1096,7 @@ Model Size: 6.1 GB
       \/     \/     \/                \/      \/     \/         \/
 Model Name: medllama2:7b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-medllama2:7b:latest
+Model Docker Image: medllama2:7b
 Model Size: 4.1 GB
 ---------------------------
                    .___.__  __                        
@@ -1115,12 +1108,12 @@ Model Size: 4.1 GB
 
 Model Name: meditron
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-meditron:latest
+Model Docker Image: meditron:latest
 Model Size: 3.8 GB
 ---------------------------
 Model Name: meditron:70b
 Model Properties: [embeddingModel, streamingLanguageModel, languageModel, streamingChatModel, chatModel]
-Model Docker Image: langchain4j/ollama-meditron:70b:latest
+Model Docker Image: meditron:70b
 Model Size: 39.0 GB
 ---------------------------
 

@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.Externals.Controller;
+package com.dev.langbotchain.langchain4j.spring.API.Controller;
 
 import com.dev.langbotchain.langchain4j.spring.Externals.Service.DocumentStreamGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;

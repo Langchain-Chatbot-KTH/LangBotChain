@@ -1,6 +1,6 @@
-package com.dev.langbotchain.langchain4j.spring.Externals.Service;
+package com.dev.langbotchain.langchain4j.spring.API.Service;
 
-import com.dev.langbotchain.langchain4j.spring.Externals.KafkaAPI.SseController;
+import com.dev.langbotchain.langchain4j.spring.API.KafkaAPI.SseController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

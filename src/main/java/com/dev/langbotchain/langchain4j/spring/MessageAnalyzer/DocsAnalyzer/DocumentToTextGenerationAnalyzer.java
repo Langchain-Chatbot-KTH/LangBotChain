@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.Generation.Document;
+package com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.DocsAnalyzer;
 
 import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralAgent;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
@@ -20,14 +20,15 @@ import java.io.InputStream;
 
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
-import static com.dev.langbotchain.langchain4j.spring.Generation.Document.InitializeDocumentByModel.initializeModel;
+import static com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.DocsAnalyzer.InitializeDocumentByModelAnalyzer.initializeModel;
 
 @Component
-public class DocumentToTextGeneration {
-    private GeneralAgent assistant;
+public class DocumentToTextGenerationAnalyzer {
+    private static GeneralAgent assistant;
 
-    public String generateTextWithDocument(String question, MultipartFile document, String modelName) throws IOException {
+    public static String generateTextWithDocumentAnalyzer(String question, MultipartFile document, String modelName) throws IOException {
 
+        System.out.println(modelName);
         Model modelObject = ModelList.findModelByName(modelName);
         checkOllamaServerAndInitializeModel(modelObject);
         initializeTextWithDocument(document, modelObject);
@@ -35,7 +36,7 @@ public class DocumentToTextGeneration {
         return answer;
     }
 
-    private DocumentParser createDocumentParser(MultipartFile userDocument) throws UnsupportedOperationException {
+    private static DocumentParser createDocumentParser(MultipartFile userDocument) throws UnsupportedOperationException {
         if (userDocument != null) {
             String extension = FilenameUtils.getExtension(userDocument.getOriginalFilename());
             switch (extension) {
@@ -51,7 +52,7 @@ public class DocumentToTextGeneration {
         }
     }
 
-    void initializeTextWithDocument(MultipartFile userDocument, Model model) throws IOException {
+    static void initializeTextWithDocument(MultipartFile userDocument, Model model) throws IOException {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         DocumentParser documentParser = createDocumentParser(userDocument);
@@ -73,7 +74,7 @@ public class DocumentToTextGeneration {
                 .build();
 
     }
-    private String chat(String message) {
+    private static String chat(String message) {
         return assistant.chat(message);
     }
 }

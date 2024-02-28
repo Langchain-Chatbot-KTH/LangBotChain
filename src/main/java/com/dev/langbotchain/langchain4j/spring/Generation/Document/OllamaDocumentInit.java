@@ -6,12 +6,10 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 
 import java.time.Duration;
 
-import static com.dev.langbotchain.langchain4j.spring.Config.ContainerConfig.ContainerConfig.getContainerModel;
+import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.baseUrl;
 
 public class OllamaDocumentInit {
     protected static ChatLanguageModel initializeOllamaModel(Model modelObject){
-        String baseUrl = String.format("http://%s:%d", getContainerModel().getHost(), getContainerModel().getFirstMappedPort());
-
         ChatLanguageModel model = OllamaChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName(modelObject.getName())
