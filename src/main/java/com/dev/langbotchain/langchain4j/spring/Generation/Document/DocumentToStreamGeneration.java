@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.Generation.Stream;
+package com.dev.langbotchain.langchain4j.spring.Generation.Document;
 
 import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralStreamAssistant;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;
@@ -30,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.shaded.org.apache.commons.io.FilenameUtils;
 
 import java.io.IOException;
@@ -60,16 +59,8 @@ public class DocumentToStreamGeneration {
 
     public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid) throws IOException {
 
-/*        Model modelObject = ModelList.findModelByName(modelName);
-        if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
-            GenericContainer<?>  model = createContainer(modelObject.getLangchain4JDockerPath());
-            assert model != null;
-            model.start();
-            initializeTokenStreamWithDocument(document, modelObject);
-        }*/
         Model modelObject = ModelList.findModelByName(modelName);
         checkOllamaServerAndInitializeModel(modelObject);
-        //This initialize should use a boolean check if assistant is initialized with the tokenstream
         initializeTokenStreamWithDocument(document, modelObject);
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
@@ -148,7 +139,6 @@ public class DocumentToStreamGeneration {
                 .retriever(retriever(document))
                 //.chatMemory(chatMemory)
                 .build();
-
     }
 
 

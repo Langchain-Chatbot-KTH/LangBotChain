@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.Generation.Stream;
+package com.dev.langbotchain.langchain4j.spring.Generation.URL;
 
 import com.dev.langbotchain.langchain4j.spring.Generation.Agents.GeneralStreamAssistant;
 import com.dev.langbotchain.langchain4j.spring.ModelOptions.ModelObject.Model;

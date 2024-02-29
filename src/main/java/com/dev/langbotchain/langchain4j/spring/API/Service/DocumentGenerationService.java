@@ -17,9 +17,8 @@ public class DocumentGenerationService {
         this.documentToTextGeneration = documentToTextGeneration;
     }
 
-
-    public String generateTextWithDocument(String question, MultipartFile document) throws IOException {
-        String modelName = findSuitableModel(question);
+    public String generateTextWithDocument(String question, MultipartFile document, String uuid) throws IOException {
+        String modelName = findSuitableModel(question, uuid);
         return documentToTextGeneration.generateTextWithDocument(question, document, modelName);
     }
 }

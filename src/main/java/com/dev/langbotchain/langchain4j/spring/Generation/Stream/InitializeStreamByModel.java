@@ -11,7 +11,7 @@ import static com.dev.langbotchain.langchain4j.spring.Config.ModelConfig.OllamaC
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.baseUrl;
 
 public class InitializeStreamByModel {
-    protected static StreamingChatLanguageModel initializeModel(Model model) {
+    public static StreamingChatLanguageModel initializeModel(Model model) {
         String modelName = model.getName().toLowerCase();
         if (containsOllamaModel(modelName)) {
             return ollamaStream(modelName);

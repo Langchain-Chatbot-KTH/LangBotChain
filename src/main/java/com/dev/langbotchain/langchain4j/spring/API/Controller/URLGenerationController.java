@@ -23,7 +23,8 @@ public class URLGenerationController {
     @GetMapping("/url")
     public String generateTextWithUrl(
             @RequestParam String message,
+            @RequestParam String uuid,
             @RequestParam String urlPath) throws IOException {
-        return urlGenerationService.generateTextWithUrl(message, urlPath);
+        return urlGenerationService.generateTextWithUrl(message, uuid, urlPath);
     }
 }

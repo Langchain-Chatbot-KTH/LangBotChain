@@ -1,8 +1,6 @@
 package com.dev.langbotchain.langchain4j.spring.Externals.Service;
 
-import com.dev.langbotchain.langchain4j.spring.Generation.Stream.URLToStreamGeneration;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.kafka.core.KafkaTemplate;
+import com.dev.langbotchain.langchain4j.spring.Generation.URL.URLToStreamGeneration;
 import org.springframework.stereotype.Service;
 
 @Service

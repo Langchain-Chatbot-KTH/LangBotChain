@@ -21,8 +21,8 @@ public class DocumentGenerationController {
     @PostMapping("/document")
     public String generateTextWithDocument(
             @RequestParam String message,
+            @RequestParam String uuid,
             @RequestPart("document") MultipartFile document) throws IOException {
-        return documentGenerationService.generateTextWithDocument(message,document);
+        return documentGenerationService.generateTextWithDocument(message,document,uuid);
     }
-
 }

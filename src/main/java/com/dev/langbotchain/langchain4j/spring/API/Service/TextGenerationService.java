@@ -19,7 +19,7 @@ public class TextGenerationService {
     }
 
     public String generateText(String question, String uuid) throws IOException {
-        String response = findSuitableModel(question);
+        String response = findSuitableModel(question, uuid);
         System.out.println(response);
 
         if (OLLAMA_MODEL_NAMES.contains(response.toLowerCase())) {

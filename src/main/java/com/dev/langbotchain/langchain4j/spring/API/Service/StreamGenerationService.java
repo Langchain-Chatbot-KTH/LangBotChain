@@ -16,7 +16,7 @@ public class StreamGenerationService {
     }
 
     public void generateStream(String question, String uuid) throws IOException {
-        String model = findSuitableModel(question);
+        String model = findSuitableModel(question, uuid);
         streamGeneration.GenerateStream(question, model, uuid);
     }
 }
