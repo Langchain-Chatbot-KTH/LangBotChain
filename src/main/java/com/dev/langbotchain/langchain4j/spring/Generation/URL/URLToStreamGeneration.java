@@ -54,15 +54,9 @@ public class URLToStreamGeneration {
     }
 
     public void generateStreamWithURL(String question, String UrlPath, String modelName, String uuid) {
-/*        Model modelObject = ModelList.findModelByName(modelName);
-        if(!isContainerRunning(modelObject.getLangchain4JDockerPath())){
-            GenericContainer<?> model = createContainer(modelObject.getLangchain4JDockerPath());
-            model.start();
-            initializeStreamWithUrl(UrlPath, modelObject);
-        }*/
+
         Model modelObject = ModelList.findModelByName(modelName);
         checkOllamaServerAndInitializeModel(modelObject);
-        //This initialize should use a boolean check if assistant is initialized with the tokenstream
         initializeStreamWithUrl(UrlPath, modelObject);
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
@@ -101,12 +95,10 @@ public class URLToStreamGeneration {
     }
 
     private void initializeStreamWithUrl(String UrlPath, Model model) {
-        if(assistant != null) { return; }
-        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        //ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        //ContentRetriever contentRetriever = createContentRetriever(document);
         DocumentParser documentParser = new TextDocumentParser();
         Document document = UrlDocumentLoader.load(UrlPath, documentParser);
-
-        ContentRetriever contentRetriever = createContentRetriever(document);
 
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
@@ -126,8 +118,6 @@ public class URLToStreamGeneration {
 
         List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
         embeddingStore.addAll(embeddings, segments);
-
-
 
         return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
     }

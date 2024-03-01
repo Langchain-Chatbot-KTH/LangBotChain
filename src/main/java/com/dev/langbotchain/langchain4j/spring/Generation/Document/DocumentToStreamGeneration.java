@@ -117,8 +117,8 @@ public class DocumentToStreamGeneration {
     }
 
     public void initializeTokenStreamWithDocument(MultipartFile userDocument, Model model) throws IOException {
-        if(assistant != null) { return; }
-        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        //ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        //ContentRetriever contentRetriever = createContentRetriever(document);
 
         DocumentParser documentParser = createDocumentParser(userDocument);
 
@@ -127,15 +127,10 @@ public class DocumentToStreamGeneration {
         Document document = documentParser.parse(fileInputStream);
         fileInputStream.close();
 
-        ContentRetriever contentRetriever = createContentRetriever(document);
-
-
         // The final step is to build our AI Service,
         // configuring it to use the components we've created above.
-
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
-                //.contentRetriever(contentRetriever)
                 .retriever(retriever(document))
                 //.chatMemory(chatMemory)
                 .build();
@@ -151,8 +146,6 @@ public class DocumentToStreamGeneration {
 
         List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
         embeddingStore.addAll(embeddings, segments);
-
-
 
         return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
     }
