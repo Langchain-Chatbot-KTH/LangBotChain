@@ -1,8 +1,6 @@
 package com.dev.langbotchain.langchain4j.spring.API.Controller;
 
-
-
-import com.dev.langbotchain.langchain4j.spring.Externals.Service.URLStreamGenerationService;
+import com.dev.langbotchain.langchain4j.spring.API.Service.URLStreamGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +19,12 @@ public class URLStreamGenerationController {
     }
 
     @GetMapping("/url")
-    public String generateTextWithUrl(
+    public String generateStreamWithUrl(
             @RequestParam String message,
             @RequestParam String urlPath,
-            @RequestParam String modelName,
-            @RequestParam String uuid){
-        urlStreamGenerationService.generateStreamWithURL(message, urlPath, modelName, uuid);
-        return "Streaming";
+            @RequestParam String uuid,
+            @RequestParam int id){
+        return urlStreamGenerationService.generateStreamWithURL(message, urlPath, uuid, id);
     }
 }
 

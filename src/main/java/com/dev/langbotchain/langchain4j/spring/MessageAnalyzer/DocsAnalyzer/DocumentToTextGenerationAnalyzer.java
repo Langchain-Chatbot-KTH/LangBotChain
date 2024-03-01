@@ -25,7 +25,9 @@ import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.retriever.EmbeddingStoreRetriever;
 import dev.langchain4j.retriever.Retriever;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.TokenStream;
+import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +44,15 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
+import static com.dev.langbotchain.langchain4j.spring.ModelMemory.InitModelMemory.initModelMemory;
 
 @Component
 public class DocumentToTextGenerationAnalyzer {
     private static GeneralStreamAssistant assistant;
+
+    interface GeneralStreamAssistant{
+        TokenStream chat(@MemoryId int memoryId, @UserMessage String userMessage);
+    }
     private static KafkaTemplate<String, String> kafkaTemplate = null;
     private static ObjectMapper objectMapper = null;
 
@@ -55,14 +62,14 @@ public class DocumentToTextGenerationAnalyzer {
         DocumentToTextGenerationAnalyzer.objectMapper = objectMapper;
     }
 
-    public static void generateTextWithDocumentAnalyzer(String question, MultipartFile document, String modelName, String uuid) throws IOException {
+    public static void generateTextWithDocumentAnalyzer(String question, MultipartFile document, String modelName, String uuid, int id) throws IOException {
         Model modelObject = ModelList.findModelByName(modelName);
         checkOllamaServerAndInitializeModel(modelObject);
         initializeTokenStreamWithDocument(document, modelObject);
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
-        TokenStream tokenStream = assistant.chat(question);
+        TokenStream tokenStream = assistant.chat(id, question);
 
         tokenStream.onNext(token -> {
                     try {
@@ -70,7 +77,6 @@ public class DocumentToTextGenerationAnalyzer {
                                 "message", token,
                                 "uuid", uuid
                         ));
-                        System.out.println(token.toString()); //remove before merging
                         kafkaTemplate.send("answers", jsonMessageResponse);
                     } catch (IOException e) {
                         futureResponse.completeExceptionally(e);
@@ -131,7 +137,7 @@ public class DocumentToTextGenerationAnalyzer {
                 .streamingChatLanguageModel(InitializeStreamByModel.initializeModel(model))
                 //.contentRetriever(contentRetriever)
                 .retriever(retriever(document))
-                //.chatMemory(chatMemory)
+                .chatMemoryProvider(initModelMemory())
                 .build();
     }
 

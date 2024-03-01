@@ -23,7 +23,9 @@ import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.retriever.EmbeddingStoreRetriever;
 import dev.langchain4j.retriever.Retriever;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.TokenStream;
+import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +43,17 @@ import java.util.concurrent.CompletableFuture;
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
 import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
 import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.InitializeStreamByModel.initializeModel;
+import static com.dev.langbotchain.langchain4j.spring.ModelMemory.InitModelMemory.initModelMemory;
 
 @Component
 public class DocumentToStreamGeneration {
 
-
     private GeneralStreamAssistant assistant;
+
+    interface GeneralStreamAssistant{
+        TokenStream chat(@MemoryId int memoryId, @UserMessage String userMessage);
+    }
+
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
@@ -57,7 +64,7 @@ public class DocumentToStreamGeneration {
     }
 
 
-    public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid) throws IOException {
+    public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid, int id) throws IOException {
 
         Model modelObject = ModelList.findModelByName(modelName);
         checkOllamaServerAndInitializeModel(modelObject);
@@ -65,7 +72,7 @@ public class DocumentToStreamGeneration {
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
 
-        TokenStream tokenStream = assistant.chat(question);
+        TokenStream tokenStream = assistant.chat(id,question);
 
         tokenStream.onNext(token -> {
                     try {
@@ -73,7 +80,6 @@ public class DocumentToStreamGeneration {
                                 "message", token,
                                 "uuid", uuid
                         ));
-                        System.out.println(token.toString()); //remove before merging
                         kafkaTemplate.send("answers", jsonMessageResponse);
                     } catch (IOException e) {
                         futureResponse.completeExceptionally(e);
@@ -117,8 +123,6 @@ public class DocumentToStreamGeneration {
     }
 
     public void initializeTokenStreamWithDocument(MultipartFile userDocument, Model model) throws IOException {
-        if(assistant != null) { return; }
-        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         DocumentParser documentParser = createDocumentParser(userDocument);
 
@@ -136,11 +140,10 @@ public class DocumentToStreamGeneration {
         assistant = AiServices.builder(GeneralStreamAssistant.class)
                 .streamingChatLanguageModel(initializeModel(model))
                 //.contentRetriever(contentRetriever)
+                .chatMemoryProvider(initModelMemory())
                 .retriever(retriever(document))
-                //.chatMemory(chatMemory)
                 .build();
     }
-
 
     private Retriever<TextSegment> retriever(Document document){
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
@@ -152,13 +155,7 @@ public class DocumentToStreamGeneration {
         List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
         embeddingStore.addAll(embeddings, segments);
 
-
-
         return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
     }
-
-//    private TokenStream chat(String message) {
-//        System.out.println("do we get to chat?");
-//        return assistant.chat(message); }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/generateStreamFromDocument")
@@ -22,9 +23,9 @@ public class DocumentStreamGenerationController {
     public String generateStreamWithDocument(
             @RequestParam String message,
             @RequestPart("document") MultipartFile document,
-            @RequestParam String modelName,
-            @RequestParam String uuid) throws IOException {
-        documentStreamGenerationService.generateStreamWithDocument(message,document, modelName, uuid);
+            @RequestParam String uuid,
+            @RequestParam int id) throws IOException {
+        documentStreamGenerationService.generateStreamWithDocument(message,document, uuid, id);
         return "Streaming";
     }
 }

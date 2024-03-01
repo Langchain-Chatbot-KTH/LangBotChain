@@ -16,8 +16,8 @@ public class URLGenerationService {
         this.urLtoTextGeneration = urLtoTextGeneration;
     }
 
-    public String generateTextWithUrl(String question, String UrlPath, String uuid) throws IOException {
-        String modelName = findSuitableModel(question, uuid);
+    public String generateTextWithUrl(String question, String UrlPath, String uuid, int id) throws IOException {
+        String modelName = findSuitableModel(question, uuid, id);
         return urLtoTextGeneration.generateTextWithUrl(question,UrlPath, modelName);
     }
 }

@@ -22,7 +22,8 @@ public class DocumentGenerationController {
     public String generateTextWithDocument(
             @RequestParam String message,
             @RequestParam String uuid,
-            @RequestPart("document") MultipartFile document) throws IOException {
-        return documentGenerationService.generateTextWithDocument(message,document,uuid);
+            @RequestPart("document") MultipartFile document,
+            @RequestParam int id) throws IOException {
+        return documentGenerationService.generateTextWithDocument(message,document,uuid, id);
     }
 }

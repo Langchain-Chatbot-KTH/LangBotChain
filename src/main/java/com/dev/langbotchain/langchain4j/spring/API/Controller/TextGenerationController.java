@@ -33,13 +33,14 @@ public class TextGenerationController {
 
     @GetMapping("/text")
     public void generateText(@RequestParam String message,
-                                     @RequestParam String uuid) throws IOException {
+                             @RequestParam String uuid,
+                             @RequestParam int id) throws IOException {
         String jsonMessageQuestion = objectMapper.writeValueAsString(Map.of(
                 "message", message,
                 "uuid", uuid
         ));
         kafkaTemplate.send("questions", jsonMessageQuestion); // Not done in correct way. generateTextLlama2 should be listening on the topic.
-        String answer = textGenerationService.generateText(message, uuid);
+        String answer = textGenerationService.generateText(message, uuid, id);
         String jsonMessageResponse = objectMapper.writeValueAsString(Map.of(
                 "message", answer,
                 "uuid", uuid
@@ -49,8 +50,9 @@ public class TextGenerationController {
 
     @GetMapping("/WholeText")
     public String generateWholeText(@RequestParam String message,
-                             @RequestParam String uuid) throws IOException {
-        return textGenerationService.generateText(message, uuid);
+                                    @RequestParam String uuid,
+                                    @RequestParam int id) throws IOException {
+        return textGenerationService.generateText(message, uuid, id);
     }
 
     @GetMapping("/health")

@@ -15,7 +15,8 @@ public class DocumentStreamGenerationService {
         this.documentToStreamGeneration = documentToStreamGeneration;
     }
 
-    public void generateStreamWithDocument(String question, MultipartFile document, String model, String uuid) throws IOException {
-        documentToStreamGeneration.generateStreamWithDocument(question, document, model, uuid);
+    public void generateStreamWithDocument(String question, MultipartFile document, String uuid, int id) throws IOException {
+        String model = "llama2";
+        documentToStreamGeneration.generateStreamWithDocument(question, document, model, uuid, id);
     }
 }

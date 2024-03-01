@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+import static com.dev.langbotchain.langchain4j.spring.Config.ModelConfig.OllamaConfig.Ollama_model_names.OLLAMA_MODEL_NAMES;
 import static com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.MessageAnalyzer.findSuitableModel;
 
 @Service
@@ -15,8 +16,11 @@ public class StreamGenerationService {
         this.streamGeneration = streamGeneration;
     }
 
-    public void generateStream(String question, String uuid) throws IOException {
-        String model = findSuitableModel(question, uuid);
-        streamGeneration.GenerateStream(question, model, uuid);
+    public String generateStream(String question, String uuid, int id) throws IOException {
+        String response = findSuitableModel(question, uuid, id);
+        if (!response.equals("running")){
+            return streamGeneration.GenerateStream(question, response, uuid, id);
+        }
+        return "Running";
     }
 }

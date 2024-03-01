@@ -1,12 +1,9 @@
 package com.dev.langbotchain.langchain4j.spring.API.Service;
 
-import com.dev.langbotchain.langchain4j.spring.Generation.Document.DocumentToTextGeneration;
 import com.dev.langbotchain.langchain4j.spring.Generation.Text.TextGeneration;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
-import static com.dev.langbotchain.langchain4j.spring.Config.ModelConfig.OllamaConfig.Ollama_model_names.OLLAMA_MODEL_NAMES;
 import static com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.MessageAnalyzer.findSuitableModel;
 
 @Service
@@ -18,14 +15,12 @@ public class TextGenerationService {
         this.textGeneration = textGeneration;
     }
 
-    public String generateText(String question, String uuid) throws IOException {
-        String response = findSuitableModel(question, uuid);
-        System.out.println(response);
+    public String generateText(String question, String uuid, int id) throws IOException {
+        String response = findSuitableModel(question, uuid, id);
 
-        if (OLLAMA_MODEL_NAMES.contains(response.toLowerCase())) {
+        if (!response.equals("running")){
             return textGeneration.GenerateText(question, response);
-        } else {
-            return response;
         }
+        return response;
     }
 }

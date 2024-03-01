@@ -22,9 +22,9 @@ public class StreamGenerationController {
 
     @GetMapping("/model")
     public String generateText(@RequestParam String message,
-                                               @RequestParam String uuid) throws IOException {
-        streamGenerationService.generateStream(message, uuid);
-        return "Streaming";
+                               @RequestParam String uuid,
+                               @RequestParam int id)throws IOException {
+        return streamGenerationService.generateStream(message, uuid, id);
     }
 
     @GetMapping("/health")

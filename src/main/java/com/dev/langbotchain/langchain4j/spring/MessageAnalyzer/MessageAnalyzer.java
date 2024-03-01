@@ -5,11 +5,10 @@ import java.io.IOException;
 import static com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.MedicalFiles.MedicalSearch.findSuitableMedicalFile;
 
 public class MessageAnalyzer {
-    public static String findSuitableModel(String message, String uuid) throws IOException {
-        String result = findSuitableMedicalFile(message, uuid);
+    public static String findSuitableModel(String message, String uuid, int id) throws IOException {
+        String result = findSuitableMedicalFile(message, uuid, id);
         if (!result.equals("llama2")) {
-            // If it's not llama2, return the medical model
-            return result;
+            return "running";
         }
 
         if (message.toLowerCase().contains("sql")) {

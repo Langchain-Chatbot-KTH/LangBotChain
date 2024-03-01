@@ -24,7 +24,8 @@ public class URLGenerationController {
     public String generateTextWithUrl(
             @RequestParam String message,
             @RequestParam String uuid,
-            @RequestParam String urlPath) throws IOException {
-        return urlGenerationService.generateTextWithUrl(message, uuid, urlPath);
+            @RequestParam String urlPath,
+            @RequestParam int id) throws IOException {
+        return urlGenerationService.generateTextWithUrl(message, uuid, urlPath, id);
     }
 }

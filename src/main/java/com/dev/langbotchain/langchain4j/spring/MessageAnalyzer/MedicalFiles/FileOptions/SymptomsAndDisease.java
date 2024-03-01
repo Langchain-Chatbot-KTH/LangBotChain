@@ -8,11 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class HIV {
-    public static MultipartFile hivFile(){
-        Path path = Paths.get("./src/main/java/com/dev/langbotchain/langchain4j/spring/MessageAnalyzer/MedicalFiles/1177Docs/1177Hiv.txt");
-        String name = "1177Hiv.txt";
-        String originalFileName = "1177Hiv.txt";
+public class SymptomsAndDisease {
+    public static MultipartFile symptomsAndDisease(){
+        Path path = Paths.get("./src/main/java/com/dev/langbotchain/langchain4j/spring/MessageAnalyzer/MedicalFiles/1177Docs/1177SymptomsAndDisease.txt");
+        String name = "1177SymptomsAndDisease.txt";
+        String originalFileName = "1177SymptomsAndDisease.txt";
         String contentType = "text/plain";
         byte[] content = null;
         try {

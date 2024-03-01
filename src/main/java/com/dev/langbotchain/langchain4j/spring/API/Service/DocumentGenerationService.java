@@ -1,7 +1,6 @@
 package com.dev.langbotchain.langchain4j.spring.API.Service;
 
 import com.dev.langbotchain.langchain4j.spring.Generation.Document.DocumentToTextGeneration;
-import dev.langchain4j.service.TokenStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +16,8 @@ public class DocumentGenerationService {
         this.documentToTextGeneration = documentToTextGeneration;
     }
 
-    public String generateTextWithDocument(String question, MultipartFile document, String uuid) throws IOException {
-        String modelName = findSuitableModel(question, uuid);
+    public String generateTextWithDocument(String question, MultipartFile document, String uuid, int id) throws IOException {
+        String modelName = findSuitableModel(question, uuid, id);
         return documentToTextGeneration.generateTextWithDocument(question, document, modelName);
     }
 }
