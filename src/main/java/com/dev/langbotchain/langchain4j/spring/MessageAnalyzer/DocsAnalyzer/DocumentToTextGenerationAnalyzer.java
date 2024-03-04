@@ -68,9 +68,9 @@ public class DocumentToTextGenerationAnalyzer {
         initializeTokenStreamWithDocument(document, modelObject);
 
         CompletableFuture<Response<AiMessage>> futureResponse = new CompletableFuture<>();
-
         TokenStream tokenStream = assistant.chat(id, question);
 
+        System.out.println(tokenStream);
         tokenStream.onNext(token -> {
                     try {
                         String jsonMessageResponse = objectMapper.writeValueAsString(Map.of(
@@ -145,7 +145,7 @@ public class DocumentToTextGenerationAnalyzer {
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
-        DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
+        DocumentSplitter splitter = DocumentSplitters.recursive(1000, 50);
         List<TextSegment> segments = splitter.split(document);
 
         List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
@@ -153,6 +153,6 @@ public class DocumentToTextGenerationAnalyzer {
 
 
 
-        return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
+        return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 35, 0.6);
     }
 }

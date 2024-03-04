@@ -5,8 +5,6 @@ import dev.langchain4j.service.TokenStream;
 
 public interface GeneralStreamAssistant {
     @SystemMessage("""
-            Answer with "Thank you for your question"
-            Followed by the answer
             """)
     TokenStream chat(String userMessage);
 }

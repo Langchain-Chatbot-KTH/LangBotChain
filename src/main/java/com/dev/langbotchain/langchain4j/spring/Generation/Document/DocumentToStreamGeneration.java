@@ -63,7 +63,6 @@ public class DocumentToStreamGeneration {
         this.objectMapper = objectMapper;
     }
 
-
     public void generateStreamWithDocument(String question, MultipartFile document, String modelName, String uuid, int id) throws IOException {
 
         Model modelObject = ModelList.findModelByName(modelName);
@@ -75,6 +74,7 @@ public class DocumentToStreamGeneration {
         TokenStream tokenStream = assistant.chat(id,question);
 
         tokenStream.onNext(token -> {
+                    System.out.print(token);
                     try {
                         String jsonMessageResponse = objectMapper.writeValueAsString(Map.of(
                                 "message", token,
@@ -149,13 +149,13 @@ public class DocumentToStreamGeneration {
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
-        DocumentSplitter splitter = DocumentSplitters.recursive(300, 0);
+        DocumentSplitter splitter = DocumentSplitters.recursive(1500, 200);
         List<TextSegment> segments = splitter.split(document);
 
         List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
         embeddingStore.addAll(embeddings, segments);
 
-        return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 1, 0.6);
+        return EmbeddingStoreRetriever.from(embeddingStore, embeddingModel, 25, 0.6);
     }
 
 }

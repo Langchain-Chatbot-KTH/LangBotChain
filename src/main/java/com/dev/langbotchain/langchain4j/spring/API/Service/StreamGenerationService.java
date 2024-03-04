@@ -18,6 +18,7 @@ public class StreamGenerationService {
 
     public String generateStream(String question, String uuid, int id) throws IOException {
         String response = findSuitableModel(question, uuid, id);
+
         if (!response.equals("running")){
             return streamGeneration.GenerateStream(question, response, uuid, id);
         }

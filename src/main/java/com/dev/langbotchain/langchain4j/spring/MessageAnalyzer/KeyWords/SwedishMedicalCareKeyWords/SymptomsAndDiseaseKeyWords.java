@@ -1,4 +1,4 @@
-package com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.KeyWords;
+package com.dev.langbotchain.langchain4j.spring.MessageAnalyzer.KeyWords.SwedishMedicalCareKeyWords;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +38,9 @@ public class SymptomsAndDiseaseKeyWords {
         keywords.add("lyme disease");
 
         return keywords;
+    }
+
+    public static String GetSymptomsAndDiseaseFileName(){
+        return "1177SymptomsAndDisease.txt";
     }
 }

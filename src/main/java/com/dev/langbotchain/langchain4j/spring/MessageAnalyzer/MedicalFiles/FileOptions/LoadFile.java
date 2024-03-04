@@ -8,11 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class SymptomsAndDisease {
-    public static MultipartFile symptomsAndDisease(){
-        Path path = Paths.get("./src/main/java/com/dev/langbotchain/langchain4j/spring/MessageAnalyzer/MedicalFiles/1177Docs/1177SymptomsAndDisease.txt");
-        String name = "1177SymptomsAndDisease.txt";
-        String originalFileName = "1177SymptomsAndDisease.txt";
+public class LoadFile {
+    public static MultipartFile loadFile(String file){
+        Path path = Paths.get("./src/main/java/com/dev/langbotchain/langchain4j/spring/MessageAnalyzer/MedicalFiles/1177Docs/" + file);
         String contentType = "text/plain";
         byte[] content = null;
         try {
@@ -20,8 +18,8 @@ public class SymptomsAndDisease {
         } catch (final IOException e) {
         }
 
-        MultipartFile document = new MockMultipartFile(name,
-                originalFileName, contentType, content);
+        MultipartFile document = new MockMultipartFile(file,
+                file, contentType, content);
         return document;
     }
 }
