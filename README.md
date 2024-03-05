@@ -25,7 +25,37 @@ sudo apt-get install -y nvidia-container-toolkit
 
 ### UNIX based systems
 
+Download Kafka from: https://kafka.apache.org/downloads
+
+Extract and move to Directory:
+
+$ tar -xzf kafka_2.13-3.7.0.tgz
+$ cd kafka_2.13-3.7.0
+
+Start the ZooKeeper service
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Start the Kafka broker service after the Zookeeper has run for a while.
+$ bin/kafka-server-start.sh config/server.properties
+
+Start the topic
+$ bin/kafka-topics.sh --create --topic answers --bootstrap-server localhost:9092
+
 ### Windows based systems
 
-## 
+Download Kafka from: https://kafka.apache.org/downloads
+
+Extract and move to Directory:
+
+$ tar -xzf kafka_2.13-3.7.0.tgz
+$ cd kafka_2.13-3.7.0
+
+Start the ZooKeeper service
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Start the Kafka broker service after the Zookeeper has run for a while.
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+Start the topic
+.\bin\windows\kafka-topics.bat --create --topic answers --bootstrap-server localhost:9092
 
