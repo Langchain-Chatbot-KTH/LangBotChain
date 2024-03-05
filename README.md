@@ -18,11 +18,14 @@ curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey \
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list \
     | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' \
     | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-sudo apt-get update
+sudo apt-get update 
+```
 
 2. Install the NVIDIA Container Toolkit packages
 
+```bash
 sudo apt-get install -y nvidia-container-toolkit
+```
 
 ## Kafka setup for local testing
 
@@ -32,33 +35,46 @@ Download Kafka from: https://kafka.apache.org/downloads
 
 Extract and move to Directory:
 
+```bash
 $ tar -xzf kafka_2.13-3.7.0.tgz
 $ cd kafka_2.13-3.7.0
-
-Start the ZooKeeper service
+```
+```bash
+#Start the ZooKeeper service
 $ bin/zookeeper-server-start.sh config/zookeeper.properties
+```
 
-Start the Kafka broker service after the Zookeeper has run for a while.
+```bash
+#Start the Kafka broker service after the Zookeeper has run for a while.
 $ bin/kafka-server-start.sh config/server.properties
+```
 
-Start the topic
+```bash
+#Start the topic
 $ bin/kafka-topics.sh --create --topic answers --bootstrap-server localhost:9092
+```
 
-### Windows based systems
+### Windows 
 
 Download Kafka from: https://kafka.apache.org/downloads
 
 Extract and move to Directory:
 
+```bash
 $ tar -xzf kafka_2.13-3.7.0.tgz
 $ cd kafka_2.13-3.7.0
+```
 
-Start the ZooKeeper service
+```bash
+#Start the ZooKeeper service
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
-
-Start the Kafka broker service after the Zookeeper has run for a while.
+```
+```bash
+#Start the Kafka broker service after the Zookeeper has run for a while.
 .\bin\windows\kafka-server-start.bat .\config\server.properties
+```
 
-Start the topic
+```bash
+#Start the topic
 .\bin\windows\kafka-topics.bat --create --topic answers --bootstrap-server localhost:9092
-
+```
