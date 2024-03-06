@@ -31,7 +31,15 @@ RUN apt-get install -y docker-ce docker-ce-cli containerd.io nvidia-container-to
 RUN curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose
 
-VOLUME /tmp
+# Create a volume for permanent storage
+VOLUME /models
+
+# Set the working directory
+WORKDIR /models
+
+# Copy the application JAR file
 ARG JAR_FILE=target/LangBotChain-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
+
+# Define the entry point for the container
 ENTRYPOINT ["java","-jar","/app.jar"]
