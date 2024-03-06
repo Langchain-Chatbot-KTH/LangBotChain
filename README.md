@@ -51,7 +51,7 @@ $ bin/kafka-server-start.sh config/server.properties
 
 ```bash
 #Start the topic
-$ bin/kafka-topics.sh --create --topic answers --bootstrap-server localhost:9092
+$ bin/kafka-console-consumer.sh --topic answers --from-beginning --bootstrap-server localhost:9092
 ```
 
 ### Windows 
@@ -76,5 +76,5 @@ $ cd kafka_2.13-3.7.0
 
 ```bash
 #Start the topic
-.\bin\windows\kafka-topics.bat --create --topic answers --bootstrap-server localhost:9092
+.\bin\windows\kafka-console-consumer.bat --topic answers --from-beginning --bootstrap-server localhost:9092
 ```
