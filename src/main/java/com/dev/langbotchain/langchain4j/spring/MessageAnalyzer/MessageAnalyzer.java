@@ -55,14 +55,18 @@ public class MessageAnalyzer {
 
         for (String sentence : Code.CODING_SENTENCES) {
             if (message.toLowerCase().contains(sentence.toLowerCase())) {
-                return "code-llama";
+                return "codellama";
             }
         }
 
         for (String term : Code.CODING_KEYWORDS) {
             if (message.toLowerCase().contains(term.toLowerCase())) {
-                return "code-llama";
+                return "codellama";
             }
+        }
+
+        if (message.toLowerCase().contains("tell me a funny joke")){
+            return "llama2-uncensored";
         }
 
         return "llama2";

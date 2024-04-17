@@ -41,7 +41,6 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import static com.dev.langbotchain.langchain4j.spring.Config.OllamaServerConfig.OllamaServerCheck.checkOllamaServerAndInitializeModel;
-import static com.dev.langbotchain.langchain4j.spring.Generation.ContentRetriver.ContentRetriverObject.createContentRetriever;
 import static com.dev.langbotchain.langchain4j.spring.Generation.Stream.InitializeStreamByModel.initializeModel;
 import static com.dev.langbotchain.langchain4j.spring.ModelMemory.InitModelMemory.initModelMemory;
 
@@ -130,8 +129,6 @@ public class DocumentToStreamGeneration {
         InputStream fileInputStream = userDocument.getInputStream();
         Document document = documentParser.parse(fileInputStream);
         fileInputStream.close();
-
-        ContentRetriever contentRetriever = createContentRetriever(document);
 
 
         // The final step is to build our AI Service,
